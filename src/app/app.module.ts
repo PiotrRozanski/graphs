@@ -3,7 +3,8 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
-import { SidebarComponent } from './app/sidebar/sidebar/sidebar.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import {MdlModule} from '@angular-mdl/core';
 
 
 @NgModule({
@@ -12,7 +13,8 @@ import { SidebarComponent } from './app/sidebar/sidebar/sidebar.component';
     SidebarComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    MdlModule
   ],
   providers: [],
   bootstrap: [AppComponent]
