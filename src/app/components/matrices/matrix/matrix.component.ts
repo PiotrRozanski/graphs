@@ -11,17 +11,17 @@ export class MatrixComponent implements OnInit {
   @Input() tableTitle: string;
   @Output() elementsOfMatrix: EventEmitter<ElementOfTable[][]> = new EventEmitter();
   matrix: ElementOfTable[][] = [[]];
-  index = 5;
+  index = 2;
 
   constructor() {
-    this.prepareMatrix();
   }
 
   ngOnInit() {
-    this.elementsOfMatrix.emit(this.matrix);
+    this.prepareMatrix();
   }
 
   public increaseMatrix() {
+    this.matrix = [[]];
     this.index++;
     this.prepareMatrix();
   }
@@ -41,9 +41,17 @@ export class MatrixComponent implements OnInit {
         this.matrix[i][j] = new ElementOfTable(0, i + 1, j + 1);
       }
     }
+    this.elementsOfMatrix.emit(this.matrix);
   }
 
   public setField(elementValue: number, firstDimensionTable: number, twiceDimensionTable: number) {
     this.matrix[firstDimensionTable - 1][twiceDimensionTable - 1].elementValue = elementValue;
+  }
+
+  checkElementOfMatrix(x: number, y: number): boolean {
+    if (this.tableTitle === 'Adjacency matrix') {
+      return x !== y;
+    }
+    return true;
   }
 }

@@ -7,12 +7,12 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import {MdlModule} from '@angular-mdl/core';
 import {NgxGraphModule} from '@swimlane/ngx-graph';
 import { MatrixComponent } from './components/matrices/matrix/matrix.component';
-import {MatButtonModule, MatMenuModule} from '@angular/material';
+import {MatButtonModule, MatMenuModule, MatSnackBarModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { GraphVisualizationComponent } from './components/graph-visualization/graph-visualization.component';
-import { LinkVisualComponent } from './components/graph-visualization/link-visual/link-visual.component';
-import { NodeVisualComponent } from './components/graph-visualization/node-visual/node-visual.component';
-import {ZoomableDirective} from './components/graph-visualization/d3/directives/zoomable.directive';
+import { LinkVisualComponent } from './components/graph-visualization';
+import { NodeVisualComponent } from './components/graph-visualization';
+import {ZoomableDirective} from './components/graph-visualization/d3/directives';
 import {DraggableDirective} from './components/graph-visualization/d3/directives';
 import {D3Service} from './components/graph-visualization/d3';
 import {AdjacencyMatrixPageComponent} from './pages/adjacency-matrix-page/adjacency-matrix-page.component';
@@ -38,6 +38,7 @@ import { AdjacencyMatrixComponent } from './features/adjacency-matrix/adjacency-
     MatButtonModule,
     MatMenuModule,
     BrowserAnimationsModule,
+    MatSnackBarModule
   ],
   providers: [D3Service],
   bootstrap: [AppComponent]

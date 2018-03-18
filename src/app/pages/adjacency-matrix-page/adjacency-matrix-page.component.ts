@@ -11,33 +11,7 @@ import {ElementOfTable} from '../../components/matrices/matrix/ElementOfTable';
 export class AdjacencyMatrixPageComponent implements OnInit {
   elements: ElementOfTable[][];
 
-  nodes: Node[] = [];
-  links: Link[] = [];
-
   constructor() {
-    const N = APP_CONFIG.N,
-      getIndex = number => number - 1;
-
-    /** constructing the nodes array */
-    for (let i = 1; i <= 5; i++) {
-      this.nodes.push(new Node(i));
-    }
-
-    // for (let i = 1; i <= N; i++) {
-    //   for (let m = 2; i * m <= N; m++) {
-    //     /** increasing connections toll on connecting nodes */
-    //     this.nodes[getIndex(i)].linkCount++;
-    //     this.nodes[getIndex(i * m)].linkCount++;
-
-    /** connecting the nodes before starting the simulation */
-    this.links.push(new Link(1, 2));
-    this.links.push(new Link(1, 3));
-    this.links.push(new Link(2, 3));
-    this.links.push(new Link(2, 4));
-    this.links.push(new Link(4, 3));
-    this.links.push(new Link(1, 5));
-    //   }
-    // }
   }
 
   ngOnInit(): void {

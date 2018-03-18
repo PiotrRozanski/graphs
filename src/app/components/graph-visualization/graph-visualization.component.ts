@@ -32,6 +32,7 @@ export class GraphVisualizationComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+    console.log('loop');
     /** Receiving an initialized simulated graph from our custom d3 service */
     this.graph = this.d3Service.getForceDirectedGraph(this.nodes, this.links, this.options);
 
@@ -46,6 +47,7 @@ export class GraphVisualizationComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
+    console.log('loop');
     this.graph.initSimulation(this.options);
   }
 

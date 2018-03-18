@@ -1,2 +1,2 @@
-<app-graph-visualization [nodes]="nodes" [links]="links"></app-graph-visualization>
-<button (click)="test()">text</button>
+<button mat-button (click)="generateGraph()">Generate</button>
+<app-graph-visualization *ngIf="wasGenerated" [nodes]="nodes" [links]="links"></app-graph-visualization>
