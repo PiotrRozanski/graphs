@@ -9,12 +9,27 @@ import {NgxGraphModule} from '@swimlane/ngx-graph';
 import { MatrixComponent } from './components/matrices/matrix/matrix.component';
 import {MatButtonModule, MatMenuModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { GraphVisualizationComponent } from './components/graph-visualization/graph-visualization.component';
+import { LinkVisualComponent } from './components/graph-visualization/link-visual/link-visual.component';
+import { NodeVisualComponent } from './components/graph-visualization/node-visual/node-visual.component';
+import {ZoomableDirective} from './components/graph-visualization/d3/directives/zoomable.directive';
+import {DraggableDirective} from './components/graph-visualization/d3/directives';
+import {D3Service} from './components/graph-visualization/d3';
+import {AdjacencyMatrixPageComponent} from './pages/adjacency-matrix-page/adjacency-matrix-page.component';
+import { AdjacencyMatrixComponent } from './features/adjacency-matrix/adjacency-matrix.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SidebarComponent,
-    MatrixComponent
+    MatrixComponent,
+    GraphVisualizationComponent,
+    LinkVisualComponent,
+    NodeVisualComponent,
+    DraggableDirective,
+    ZoomableDirective,
+    AdjacencyMatrixPageComponent,
+    AdjacencyMatrixComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +39,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     MatMenuModule,
     BrowserAnimationsModule,
   ],
-  providers: [],
+  providers: [D3Service],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, HostBinding, Input, OnInit, Output} from '@angular/core';
 import {ElementOfTable} from './ElementOfTable';
 
 
@@ -8,16 +8,17 @@ import {ElementOfTable} from './ElementOfTable';
   styleUrls: ['./matrix.component.css']
 })
 export class MatrixComponent implements OnInit {
-  @Input()
-  tableTitle: string;
-  index = 5;
+  @Input() tableTitle: string;
+  @Output() elementsOfMatrix: EventEmitter<ElementOfTable[][]> = new EventEmitter();
   matrix: ElementOfTable[][] = [[]];
+  index = 5;
 
   constructor() {
     this.prepareMatrix();
   }
 
   ngOnInit() {
+    this.elementsOfMatrix.emit(this.matrix);
   }
 
   public increaseMatrix() {
