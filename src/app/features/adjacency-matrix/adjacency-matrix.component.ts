@@ -21,21 +21,23 @@ export class AdjacencyMatrixComponent implements OnInit {
   }
 
   generateGraph() {
-    console.log('test');
+    this.nodes = [];
+    this.links = [];
     for (let i = 0; i < this.elements.length; i++) {
       for (let j = 0; j < this.elements[i].length; j++) {
         if (this.elements[i][j].elementValue === 1) {
           if (this.elements[i][j].elementValue !== this.elements[j][i].elementValue) {
-            this.openSnackBar();
+            this.openSnackBar('ERROR: Incorrect values in the adjacency matrix');
             return;
           } else {
             this.prepareLinks(i + 1, j + 1);
           }
+
         }
       }
     }
     this.prepareNodes();
-    this.wasGenerated = true;
+    this.validateAdjacencyMatrix();
   }
 
   prepareNodes() {
@@ -46,21 +48,28 @@ export class AdjacencyMatrixComponent implements OnInit {
   }
 
   prepareLinks(source: number, target: number) {
-    if (this.wasGenerated === false) {
-      this.links.push(new Link(source, target));
-    }
-    this.links.forEach((item) => {
-      if (item.target === source) {
-        if (item.source === target) {
-          return;
-        }
-      } else {
-        this.links.push(new Link(source, target));
-      }
+    this.links.push(new Link(source, target));
+  }
+
+  openSnackBar(info: string) {
+    this.snackBar.open(info, null, {
+      duration: 3000
     });
   }
 
-  openSnackBar() {
-    this.snackBar.open('ERROR: Incorrect values in the adjacency matrix');
+  // Todo zastanowić się jak to zlikwidować
+  disableGraph() {
+    this.wasGenerated = false;
+  }
+
+  validateAdjacencyMatrix() {
+    if (this.elements.length > this.links.length) {
+      this.openSnackBar('ERROR: Incorrect values in the adjacency matrix');
+      this.links = [];
+      this.nodes = [];
+      this.wasGenerated = false;
+    } else {
+      this.wasGenerated = true;
+    }
   }
 }

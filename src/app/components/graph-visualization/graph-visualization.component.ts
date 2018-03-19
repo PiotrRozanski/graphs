@@ -3,8 +3,7 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
-  HostListener,
-  Input,
+  Input, OnDestroy,
   OnInit
 } from '@angular/core';
 import {ForceDirectedGraph} from './d3/models';
@@ -22,20 +21,15 @@ export class GraphVisualizationComponent implements OnInit, AfterViewInit {
   graph: ForceDirectedGraph;
   private _options: { width, height } = {width: 400, height: 300};
 
-  @HostListener('window:resize', ['$event'])
-  onResize(event) {
-    this.graph.initSimulation(this.options);
-  }
-
-
   constructor(private d3Service: D3Service, private ref: ChangeDetectorRef) {
   }
 
   ngOnInit() {
-    console.log('loop');
+    console.log(this.nodes);
+    console.log(this.links);
     /** Receiving an initialized simulated graph from our custom d3 service */
     this.graph = this.d3Service.getForceDirectedGraph(this.nodes, this.links, this.options);
-
+    console.log('...');
     /** Binding change detection check on each tick
      * This along with an onPush change detection strategy should enforce checking only when relevant!
      * This improves scripting computation duration in a couple of tests I've made, consistently.
@@ -44,11 +38,13 @@ export class GraphVisualizationComponent implements OnInit, AfterViewInit {
     this.graph.ticker.subscribe((d) => {
       this.ref.markForCheck();
     });
+
   }
 
   ngAfterViewInit() {
-    console.log('loop');
+    console.log('ngAfterViewInit');
     this.graph.initSimulation(this.options);
+    console.log('finish');
   }
 
   get options() {

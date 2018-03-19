@@ -17,6 +17,8 @@ import {DraggableDirective} from './components/graph-visualization/d3/directives
 import {D3Service} from './components/graph-visualization/d3';
 import {AdjacencyMatrixPageComponent} from './pages/adjacency-matrix-page/adjacency-matrix-page.component';
 import { AdjacencyMatrixComponent } from './features/adjacency-matrix/adjacency-matrix.component';
+import { IncidenceMatrixPageComponent } from './pages/incidence-matrix-page/incidence-matrix-page.component';
+import { IncidenceMatrixComponent } from './features/incidence-matrix/incidence-matrix.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { AdjacencyMatrixComponent } from './features/adjacency-matrix/adjacency-
     DraggableDirective,
     ZoomableDirective,
     AdjacencyMatrixPageComponent,
-    AdjacencyMatrixComponent
+    AdjacencyMatrixComponent,
+    IncidenceMatrixPageComponent,
+    IncidenceMatrixComponent
   ],
   imports: [
     BrowserModule,
