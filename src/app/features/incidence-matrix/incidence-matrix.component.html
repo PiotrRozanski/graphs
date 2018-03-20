@@ -1,0 +1,3 @@
+<button mat-button (click)="generateGraph()">Generate</button>
+<button mat-button (click)="disableGraph()">Clear</button>
+<app-graph-visualization *ngIf="wasGenerated" [nodes]="nodes" [links]="links"></app-graph-visualization>
