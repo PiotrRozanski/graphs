@@ -1,0 +1,10 @@
+<table class="mdl-data-table mdl-js-data-table">
+  <td class="mdl-data-table__cell--non-numeric">
+    <app-matrix tableTitle="Adjacency matrix" (elementsOfMatrix)="onCreatedMatrix($event)">
+
+    </app-matrix>
+  </td>
+  <td class="mdl-data-table__cell--non-numeric">
+    <app-adjacency-matrix [elements]="elements"></app-adjacency-matrix>
+  </td>
+</table>

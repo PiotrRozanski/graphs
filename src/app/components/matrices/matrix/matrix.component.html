@@ -13,30 +13,33 @@
     </div>
     <table class="mdl-data-table mdl-js-data-table">
       <td class="mdl-data-table__cell--non-numeric"></td>
-      <td class="mdl-data-table__cell--non-numeric" *ngFor="let i of matrix; let in = index">
+      <td class="mdl-data-table__cell--non-numeric" *ngFor="let i of matrix; let columnID = index">
         <button mat-button disabled>
           <button
             class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect  mdl-button--mini-fab mdl-button--colored"
             disabled>
-            {{in + 1}}
+            {{columnID + 1}}
           </button>
         </button>
       </td>
-      <tr class="mdl-data-table__cell--non-numeric" *ngFor="let i of matrix; let in = index">
+      <tr class="mdl-data-table__cell--non-numeric" *ngFor="let i of matrix; let rowID = index">
         <td class="mdl-data-table__cell--non-numeric">
           <button
             class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect  mdl-button--mini-fab mdl-button--colored"
             disabled>
-            {{in + 1}}
+            {{rowID + 1}}
           </button>
         </td>
-        <td class="mdl-data-table__cell--non-numeric" *ngFor="let j of i">
-          <button mat-button [matMenuTriggerFor]="menu">
+        <td class="mdl-data-table__cell--non-numeric" *ngFor="let j of i; let elementValue = index">
+          <button *ngIf="checkElementOfMatrix(rowID, elementValue)" mat-button [matMenuTriggerFor]="menu">
             {{j.elementValue}}
             <mat-menu #menu="matMenu">
               <button mat-menu-item (click)="setField(0,j.columnID,j.rowID)">0</button>
               <button mat-menu-item (click)="setField(1,j.columnID,j.rowID)">1</button>
             </mat-menu>
+          </button>
+          <button disabled *ngIf="!checkElementOfMatrix(rowID, elementValue)" mat-button>
+            {{0}}
           </button>
         </td>
       </tr>

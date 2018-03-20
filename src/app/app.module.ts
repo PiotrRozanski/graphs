@@ -7,14 +7,33 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import {MdlModule} from '@angular-mdl/core';
 import {NgxGraphModule} from '@swimlane/ngx-graph';
 import { MatrixComponent } from './components/matrices/matrix/matrix.component';
-import {MatButtonModule, MatMenuModule} from '@angular/material';
+import {MatButtonModule, MatMenuModule, MatSnackBarModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { GraphVisualizationComponent } from './components/graph-visualization/graph-visualization.component';
+import { LinkVisualComponent } from './components/graph-visualization';
+import { NodeVisualComponent } from './components/graph-visualization';
+import {ZoomableDirective} from './components/graph-visualization/d3/directives';
+import {DraggableDirective} from './components/graph-visualization/d3/directives';
+import {D3Service} from './components/graph-visualization/d3';
+import {AdjacencyMatrixPageComponent} from './pages/adjacency-matrix-page/adjacency-matrix-page.component';
+import { AdjacencyMatrixComponent } from './features/adjacency-matrix/adjacency-matrix.component';
+import { IncidenceMatrixPageComponent } from './pages/incidence-matrix-page/incidence-matrix-page.component';
+import { IncidenceMatrixComponent } from './features/incidence-matrix/incidence-matrix.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SidebarComponent,
-    MatrixComponent
+    MatrixComponent,
+    GraphVisualizationComponent,
+    LinkVisualComponent,
+    NodeVisualComponent,
+    DraggableDirective,
+    ZoomableDirective,
+    AdjacencyMatrixPageComponent,
+    AdjacencyMatrixComponent,
+    IncidenceMatrixPageComponent,
+    IncidenceMatrixComponent
   ],
   imports: [
     BrowserModule,
@@ -23,8 +42,9 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     MatButtonModule,
     MatMenuModule,
     BrowserAnimationsModule,
+    MatSnackBarModule
   ],
-  providers: [],
+  providers: [D3Service],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
