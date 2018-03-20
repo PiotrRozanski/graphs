@@ -19,6 +19,8 @@ import {AdjacencyMatrixPageComponent} from './pages/adjacency-matrix-page/adjace
 import { AdjacencyMatrixComponent } from './features/adjacency-matrix/adjacency-matrix.component';
 import { IncidenceMatrixPageComponent } from './pages/incidence-matrix-page/incidence-matrix-page.component';
 import { IncidenceMatrixComponent } from './features/incidence-matrix/incidence-matrix.component';
+import {Routing} from './app.routing';
+
 
 @NgModule({
   declarations: [
@@ -42,7 +44,8 @@ import { IncidenceMatrixComponent } from './features/incidence-matrix/incidence-
     MatButtonModule,
     MatMenuModule,
     BrowserAnimationsModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    Routing
   ],
   providers: [D3Service],
   bootstrap: [AppComponent]
