@@ -1,7 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
-import APP_CONFIG from '../../app.config';
-import {Link, Node} from '../../components/graph-visualization/d3/models';
-import {ElementOfTable} from '../../components/matrices/matrix/ElementOfTable';
+import {Component, OnInit} from '@angular/core';
+import {ElementOfTable} from '../../components/matrices/ElementOfTable';
 
 @Component({
   selector: 'app-adjacency-matrix-page',

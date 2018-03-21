@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import {MdlModule} from '@angular-mdl/core';
 import {NgxGraphModule} from '@swimlane/ngx-graph';
-import { MatrixComponent } from './components/matrices/matrix/matrix.component';
+import { AdjacencyMatrixCreatorComponent } from './components/matrices/adjacency-matrix-creator/adjacency-matrix-creator.component';
 import {MatButtonModule, MatMenuModule, MatSnackBarModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { GraphVisualizationComponent } from './components/graph-visualization/graph-visualization.component';
@@ -20,13 +20,14 @@ import { AdjacencyMatrixComponent } from './features/adjacency-matrix/adjacency-
 import { IncidenceMatrixPageComponent } from './pages/incidence-matrix-page/incidence-matrix-page.component';
 import { IncidenceMatrixComponent } from './features/incidence-matrix/incidence-matrix.component';
 import {Routing} from './app.routing';
+import { IncidenceMatrixCreatorComponent } from './components/matrices/incidence-matrix-creator/incidence-matrix-creator.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     SidebarComponent,
-    MatrixComponent,
+    AdjacencyMatrixCreatorComponent,
     GraphVisualizationComponent,
     LinkVisualComponent,
     NodeVisualComponent,
@@ -35,7 +36,8 @@ import {Routing} from './app.routing';
     AdjacencyMatrixPageComponent,
     AdjacencyMatrixComponent,
     IncidenceMatrixPageComponent,
-    IncidenceMatrixComponent
+    IncidenceMatrixComponent,
+    IncidenceMatrixCreatorComponent
   ],
   imports: [
     BrowserModule,

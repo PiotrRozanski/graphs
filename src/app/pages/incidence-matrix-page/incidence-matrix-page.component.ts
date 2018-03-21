@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ElementOfTable} from '../../components/matrices/matrix/ElementOfTable';
+import {ElementOfTable} from '../../components/matrices/ElementOfTable';
 
 @Component({
   selector: 'app-incidence-matrix-page',

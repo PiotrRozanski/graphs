@@ -1,9 +1,8 @@
 <table class="mdl-data-table mdl-js-data-table">
   <td class="mdl-data-table__cell--non-numeric">
-    <app-matrix tableTitle="Incidence matrix" (elementsOfMatrix)="onCreatedMatrix($event)"></app-matrix>
+    <app-incidence-matrix-creator (elementsOfMatrix)="onCreatedMatrix($event)"></app-incidence-matrix-creator>
   </td>
   <td class="mdl-data-table__cell--non-numeric">
-    <!--<app-adjacency-matrix [elements]="elements"></app-adjacency-matrix>-->
     <app-incidence-matrix [elements]="elements"></app-incidence-matrix>
   </td>
 </table>

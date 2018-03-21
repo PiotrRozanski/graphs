@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ElementOfTable} from '../../components/matrices/matrix/ElementOfTable';
+import {ElementOfTable} from '../../components/matrices/ElementOfTable';
 import {Link, Node} from '../../components/graph-visualization/d3/models';
 import {MatSnackBar} from '@angular/material';
 
@@ -10,7 +10,7 @@ import {MatSnackBar} from '@angular/material';
 })
 export class AdjacencyMatrixComponent implements OnInit {
   @Input() elements: ElementOfTable[][];
-  wasGenerated = false;
+  isEnable = false;
   nodes: Node[] = [];
   links: Link[] = [];
 
@@ -21,18 +21,16 @@ export class AdjacencyMatrixComponent implements OnInit {
   }
 
   generateGraph() {
-    this.nodes = [];
-    this.links = [];
-    for (let i = 0; i < this.elements.length; i++) {
-      for (let j = 0; j < this.elements[i].length; j++) {
-        if (this.elements[i][j].elementValue === 1) {
-          if (this.elements[i][j].elementValue !== this.elements[j][i].elementValue) {
+    this.clearGraphElements();
+    for (let vertex = 0; vertex < this.elements.length; vertex++) {
+      for (let edge = 0; edge < this.elements[vertex].length; edge++) {
+        if (this.elements[vertex][edge].elementValue === 1) {
+          if (this.elements[vertex][edge].elementValue !== this.elements[edge][vertex].elementValue) {
             this.openSnackBar('ERROR: Incorrect values in the adjacency matrix');
             return;
           } else {
-            this.prepareLinks(i + 1, j + 1);
+            this.prepareLinks(vertex + 1, edge + 1);
           }
-
         }
       }
     }
@@ -40,36 +38,39 @@ export class AdjacencyMatrixComponent implements OnInit {
     this.validateAdjacencyMatrix();
   }
 
-  prepareNodes() {
-    for (let i = 0; i < this.elements.length; i++) {
-      this.nodes.push(new Node(i + 1));
-      console.log(i + 1);
+  private prepareNodes() {
+    for (let id = 0; id < this.elements.length; id++) {
+      this.nodes.push(new Node(id + 1));
     }
   }
 
-  prepareLinks(source: number, target: number) {
+  private prepareLinks(source: number, target: number) {
     this.links.push(new Link(source, target));
   }
 
-  openSnackBar(info: string) {
+  private openSnackBar(info: string) {
     this.snackBar.open(info, null, {
       duration: 3000
     });
   }
 
   // Todo zastanowić się jak to zlikwidować
-  disableGraph() {
-    this.wasGenerated = false;
+  private disableGraph() {
+    this.isEnable = false;
   }
 
-  validateAdjacencyMatrix() {
+  private validateAdjacencyMatrix() {
     if (this.elements.length > this.links.length) {
       this.openSnackBar('ERROR: Incorrect values in the adjacency matrix');
-      this.links = [];
-      this.nodes = [];
-      this.wasGenerated = false;
+      this.clearGraphElements();
+      this.isEnable = false;
     } else {
-      this.wasGenerated = true;
+      this.isEnable = true;
     }
+  }
+
+  clearGraphElements() {
+    this.links = [];
+    this.nodes = [];
   }
 }
