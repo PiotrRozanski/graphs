@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ElementOfTable} from '../../components/matrices/ElementOfTable';
+import {ElementOfTable} from '../../components/matrices/elements/ElementOfTable';
 
 @Component({
   selector: 'app-adjacency-matrix-page',

@@ -1,5 +1,8 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {ElementOfTable} from '../ElementOfTable';
+import {ElementOfTable} from '../elements/ElementOfTable';
+import {Vertex} from '../elements/Vertex';
+import {Edge} from '../elements/Edge';
+import {Matrix} from '../Matrix';
 
 
 @Component({
@@ -7,12 +10,11 @@ import {ElementOfTable} from '../ElementOfTable';
   templateUrl: './adjacency-matrix-creator.component.html',
   styleUrls: ['./adjacency-matrix-creator.component.css']
 })
-export class AdjacencyMatrixCreatorComponent implements OnInit {
-  @Output() elementsOfMatrix: EventEmitter<ElementOfTable[][]> = new EventEmitter();
-  matrix: ElementOfTable[][] = [[]];
+export class AdjacencyMatrixCreatorComponent extends Matrix implements OnInit {
   index = 2;
 
   constructor() {
+    super();
   }
 
   ngOnInit() {
@@ -34,24 +36,18 @@ export class AdjacencyMatrixCreatorComponent implements OnInit {
   }
 
   private prepareMatrix() {
-    for (let vertex = 0; vertex < this.index; vertex++) {
-      this.matrix[vertex] = [];
-      for (let edge = 0; edge < this.index; edge++) {
-        this.matrix[vertex][edge] = new ElementOfTable(0, vertex + 1, edge + 1);
+    for (let vertexID = 0; vertexID < this.index; vertexID++) {
+      this.matrix[vertexID] = [];
+      for (let edgeID = 0; edgeID < this.index; edgeID++) {
+        const vertex: Vertex = new Vertex(vertexID, vertexID.toString());
+        const edge: Edge = new Edge(edgeID, 1);
+        this.matrix[vertexID][edgeID] = new ElementOfTable(0, vertex, edge);
       }
     }
     this.elementsOfMatrix.emit(this.matrix);
   }
 
-  public setField(elementValue: number, vertex: number, edge: number) {
-    this.matrix[vertex - 1][edge - 1].elementValue = elementValue;
-  }
-
-  private checkElementOfMatrix(vertex: number, edge: number): boolean {
+  public checkElementOfMatrix(vertex: number, edge: number): boolean {
     return vertex !== edge;
-  }
-
-  private clearMatrix() {
-    this.matrix = [[]];
   }
 }

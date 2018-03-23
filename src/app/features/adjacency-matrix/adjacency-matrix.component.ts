@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ElementOfTable} from '../../components/matrices/ElementOfTable';
+import {ElementOfTable} from '../../components/matrices/elements/ElementOfTable';
 import {Link, Node} from '../../components/graph-visualization/d3/models';
 import {MatSnackBar} from '@angular/material';
 
@@ -24,8 +24,8 @@ export class AdjacencyMatrixComponent implements OnInit {
     this.clearGraphElements();
     for (let vertex = 0; vertex < this.elements.length; vertex++) {
       for (let edge = 0; edge < this.elements[vertex].length; edge++) {
-        if (this.elements[vertex][edge].elementValue === 1) {
-          if (this.elements[vertex][edge].elementValue !== this.elements[edge][vertex].elementValue) {
+        if (this.elements[vertex][edge].value === 1) {
+          if (this.elements[vertex][edge].value !== this.elements[edge][vertex].value) {
             this.openSnackBar('ERROR: Incorrect values in the adjacency matrix');
             return;
           } else {
