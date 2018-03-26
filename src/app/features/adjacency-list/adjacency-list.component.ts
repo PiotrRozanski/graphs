@@ -1,15 +1,15 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ElementOfTable} from '../../components/generators/elements/ElementOfTable';
 import {Link, Node} from '../../components/graph-visualization/d3/models';
 import {MatSnackBar} from '@angular/material';
+import {ElementOfTable} from '../../components/generators/elements/ElementOfTable';
 
 @Component({
-  selector: 'app-adjacency-matrix',
-  templateUrl: './adjacency-matrix.component.html',
-  styleUrls: ['./adjacency-matrix.component.css']
+  selector: 'app-adjacency-list',
+  templateUrl: './adjacency-list.component.html',
+  styleUrls: ['./adjacency-list.component.css']
 })
-export class AdjacencyMatrixComponent implements OnInit {
-  @Input() elements: ElementOfTable[][];
+export class AdjacencyListComponent implements OnInit {
+  @Input() elements: ElementOfTable[];
   isEnable = false;
   nodes: Node[] = [];
   links: Link[] = [];
@@ -21,25 +21,20 @@ export class AdjacencyMatrixComponent implements OnInit {
   }
 
   generateGraph() {
-    this.clearGraphElements();
-    for (let vertex = 0; vertex < this.elements.length; vertex++) {
-      for (let edge = 0; edge < this.elements[vertex].length; edge++) {
-        if (this.elements[vertex][edge].value === 1) {
-          if (this.elements[vertex][edge].value !== this.elements[edge][vertex].value) {
-            this.openSnackBar('ERROR: Incorrect values in the adjacency matrix');
-            return;
-          } else {
-            this.prepareLinks(vertex + 1, edge + 1);
-          }
+      console.log(this.elements.length);
+      this.clearGraphElements();
+      for (let i = 0; i < this.elements.length; i++) {
+        if (this.elements[i].value === 1) {
+          this.prepareLinks(this.elements[i].vertex.id, this.elements[i].edge.id);
         }
       }
-    }
-    this.prepareNodes();
-    this.validateAdjacencyMatrix();
+      this.prepareNodes();
+      this.isEnable = true;
   }
 
   private prepareNodes() {
-    for (let id = 0; id < this.elements.length; id++) {
+    const lastElement: ElementOfTable = this.elements[this.elements.length - 1];
+    for (let id = 0; id < lastElement.vertex.id; id++) {
       this.nodes.push(new Node(id + 1));
     }
   }
@@ -73,4 +68,5 @@ export class AdjacencyMatrixComponent implements OnInit {
     this.links = [];
     this.nodes = [];
   }
+
 }
