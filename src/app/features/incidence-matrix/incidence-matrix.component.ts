@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Link, Node} from '../../components/graph-visualization/d3/models';
-import {ElementOfTable} from '../../components/matrices/elements/ElementOfTable';
+import {ElementOfTable} from '../../components/generators/elements/ElementOfTable';
 import {MatSnackBar} from '@angular/material';
 
 @Component({

@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import {MdlModule} from '@angular-mdl/core';
 import {NgxGraphModule} from '@swimlane/ngx-graph';
-import { AdjacencyMatrixCreatorComponent } from './components/matrices/adjacency-matrix-creator/adjacency-matrix-creator.component';
+import { AdjacencyMatrixCreatorComponent } from './components/generators/adjacency-matrix-creator/adjacency-matrix-creator.component';
 import {MatButtonModule, MatMenuModule, MatSnackBarModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { GraphVisualizationComponent } from './components/graph-visualization/graph-visualization.component';
@@ -20,7 +20,11 @@ import { AdjacencyMatrixComponent } from './features/adjacency-matrix/adjacency-
 import { IncidenceMatrixPageComponent } from './pages/incidence-matrix-page/incidence-matrix-page.component';
 import { IncidenceMatrixComponent } from './features/incidence-matrix/incidence-matrix.component';
 import {Routing} from './app.routing';
-import { IncidenceMatrixCreatorComponent } from './components/matrices/incidence-matrix-creator/incidence-matrix-creator.component';
+import { IncidenceMatrixCreatorComponent } from './components/generators/incidence-matrix-creator/incidence-matrix-creator.component';
+import { AdjacencyListPageComponent } from './pages/adjacency-list-page/adjacency-list-page.component';
+import { AdjacencyListCreatorComponent } from './components/generators/adjacency-list-creator/adjacency-list-creator.component';
+import { AdjacencyListComponent } from './features/adjacency-list/adjacency-list.component';
+import {FormsModule} from '@angular/forms';
 
 
 @NgModule({
@@ -37,7 +41,10 @@ import { IncidenceMatrixCreatorComponent } from './components/matrices/incidence
     AdjacencyMatrixComponent,
     IncidenceMatrixPageComponent,
     IncidenceMatrixComponent,
-    IncidenceMatrixCreatorComponent
+    IncidenceMatrixCreatorComponent,
+    AdjacencyListPageComponent,
+    AdjacencyListCreatorComponent,
+    AdjacencyListComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +54,8 @@ import { IncidenceMatrixCreatorComponent } from './components/matrices/incidence
     MatMenuModule,
     BrowserAnimationsModule,
     MatSnackBarModule,
-    Routing
+    Routing,
+    FormsModule
   ],
   providers: [D3Service],
   bootstrap: [AppComponent]

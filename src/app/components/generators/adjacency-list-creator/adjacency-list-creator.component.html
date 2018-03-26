@@ -1,0 +1,27 @@
+<div class="container-fluid">
+  <div class="table-responsive">
+
+    <h3 [attr.colspan]="listIndex" class="mdl-data-table__cell--non-numeric">
+      Adjacency list
+      <button (click)="increaseList()"
+              class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect  mdl-button--mini-fab mdl-button--colored">
+        <i class="material-icons">add</i></button>
+      <button (click)="decreaseList()"
+              class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect  mdl-button--mini-fab mdl-button--colored">
+        <i class="material-icons">remove</i></button>
+      <button mat-button (click)="generateGraph()">Generate</button>
+    </h3>
+
+    <div *ngFor="let element of elements">
+    <form action="#">
+      {{element.vertex.id}}->
+      <div class="mdl-textfield mdl-js-textfield">
+        <input class="mdl-textfield__input" type="text" [(ngModel)]="inputText[element.vertex.id - 1]" [ngModelOptions]="{standalone: true}" id="sample">
+        <label class="mdl-textfield__label" for="sample">Adjacency list...</label>
+        <span class="mdl-textfield__error">Input is not a adjacency list</span>
+      </div>
+    </form>
+    </div>
+
+  </div>
+</div>
