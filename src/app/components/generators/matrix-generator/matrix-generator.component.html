@@ -1,0 +1,88 @@
+<div class="container-fluid">
+  <div class="table-responsive">
+
+    <button (click)="createAdjacencyMatrix()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+      Generate adjacency matrix
+    </button>
+    <button (click)="createIncidenceMatrix()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+      Generate incidence matrix
+    </button>
+    <button (click)="createAdjacencylist()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+      Generate adjacency list
+    </button>
+
+
+    <table *ngIf="type==='adjacency_matrix'" ngclass="mdl-data-table mdl-js-data-table">
+      <td class="mdl-data-table__cell--non-numeric"></td>
+      <td class="mdl-data-table__cell--non-numeric" *ngFor="let i of nodes; let node = index">
+        <button mat-button disabled>
+          <button
+            class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect  mdl-button--mini-fab mdl-button--colored"
+            disabled>
+            {{node + 1}}
+          </button>
+        </button>
+      </td>
+      <tr class="mdl-data-table__cell--non-numeric" *ngFor="let i of matrix; let vertex = index">
+        <td class="mdl-data-table__cell--non-numeric">
+          <button
+            class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect  mdl-button--mini-fab mdl-button--colored"
+            disabled>
+            {{vertex + 1}}
+          </button>
+        </td>
+        <td class="mdl-data-table__cell--non-numeric" *ngFor="let j of i; let elementValue = index">
+          <button mat-button>
+            {{j.value}}
+          </button>
+        </td>
+      </tr>
+    </table>
+
+    <table *ngIf="type==='incidence_matrix'" ngclass="mdl-data-table mdl-js-data-table">
+      <td class="mdl-data-table__cell--non-numeric"></td>
+      <td class="mdl-data-table__cell--non-numeric" *ngFor="let i of nodes; let node = index">
+        <button mat-button disabled>
+          <button
+            class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect  mdl-button--mini-fab mdl-button--colored"
+            disabled>
+            {{node + 1}}
+          </button>
+        </button>
+      </td>
+      <tr class="mdl-data-table__cell--non-numeric" *ngFor="let i of matrix; let vertex = index">
+        <td class="mdl-data-table__cell--non-numeric">
+          <button
+            class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect  mdl-button--mini-fab mdl-button--colored"
+            disabled>
+            {{vertex + 1}}
+          </button>
+        </td>
+        <td class="mdl-data-table__cell--non-numeric" *ngFor="let j of i; let elementValue = index">
+          <button mat-button>
+            {{j.value}}
+          </button>
+        </td>
+      </tr>
+    </table>
+
+    <div *ngIf="type==='adjacency_list'" class="container-fluid">
+      <div class="table-responsive">
+
+        <div *ngFor="let element of listText; let index = index">
+          <form action="#">
+            {{index + 1}}
+            <div class="mdl-textfield mdl-js-textfield">
+              <input class="mdl-textfield__input" type="text" value="{{element.toString()}}" id="sample">
+              <label class="mdl-textfield__label" for="sample"></label>
+              <span class="mdl-textfield__error">Input is not a adjacency list</span>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+
+
+  </div>
+</div>

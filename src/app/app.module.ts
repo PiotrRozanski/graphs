@@ -25,7 +25,8 @@ import { AdjacencyListPageComponent } from './pages/adjacency-list-page/adjacenc
 import { AdjacencyListCreatorComponent } from './components/generators/adjacency-list-creator/adjacency-list-creator.component';
 import { AdjacencyListComponent } from './features/adjacency-list/adjacency-list.component';
 import {FormsModule} from '@angular/forms';
-
+import { GraphConverterPageComponent } from './pages/graph-converter-page/graph-converter-page.component';
+import { MatrixGeneratorComponent } from './components/generators/matrix-generator/matrix-generator.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,9 @@ import {FormsModule} from '@angular/forms';
     IncidenceMatrixCreatorComponent,
     AdjacencyListPageComponent,
     AdjacencyListCreatorComponent,
-    AdjacencyListComponent
+    AdjacencyListComponent,
+    GraphConverterPageComponent,
+    MatrixGeneratorComponent
   ],
   imports: [
     BrowserModule,

@@ -8,6 +8,7 @@ import {ElementOfTable} from '../elements/ElementOfTable';
   templateUrl: './adjacency-list-creator.component.html',
   styleUrls: ['./adjacency-list-creator.component.css']
 })
+// Todo zmienic nazwe na generator
 export class AdjacencyListCreatorComponent implements OnInit, OnChanges {
   @Output() listElements: EventEmitter<ElementOfTable[]> = new EventEmitter();
   listOfElements: ElementOfTable[] = [];
