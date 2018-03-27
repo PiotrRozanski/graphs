@@ -68,5 +68,4 @@ export class AdjacencyListComponent implements OnInit {
     this.links = [];
     this.nodes = [];
   }
-
 }

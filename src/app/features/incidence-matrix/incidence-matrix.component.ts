@@ -64,7 +64,7 @@ export class IncidenceMatrixComponent implements OnInit {
   private validateIncidenceMatrix(): boolean {
     let edgeCount = 0;
     let vertexCount = 0;
-    for (let edge = 0; edge < this.elements[vertexCount].length; edge++) {
+    for (let edge = 0; edge < this.elements[0].length; edge++) {
       for (let vertex = 0; vertex < this.elements.length; vertex++) {
 
         if (this.elements[vertex][edge].value === 1) {

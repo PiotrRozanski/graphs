@@ -1,0 +1,3 @@
+<h1 *ngIf="!isGraphInMemory">No graph in app memory</h1>
+<app-matrix-generator *ngIf="isGraphInMemory" [nodes]="nodes" [links]="links"></app-matrix-generator>
+<app-graph-visualization *ngIf="isGraphInMemory" [nodes]="nodes" [links]="links"></app-graph-visualization>
