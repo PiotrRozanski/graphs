@@ -1,7 +1,7 @@
 import {Component, DoCheck, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
-import {Vertex} from '../elements/Vertex';
-import {Edge} from '../elements/Edge';
-import {ElementOfTable} from '../elements/ElementOfTable';
+import {Vertex} from '../../graph_model/Vertex';
+import {Edge} from '../../graph_model/Edge';
+import {ElementOfTable} from '../../graph_model/ElementOfTable';
 
 @Component({
   selector: 'app-adjacency-list-creator',

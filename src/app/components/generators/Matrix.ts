@@ -1,4 +1,4 @@
-import {ElementOfTable} from './elements/ElementOfTable';
+import {ElementOfTable} from '../graph_model/ElementOfTable';
 import {EventEmitter, Output} from '@angular/core';
 
 export class Matrix {

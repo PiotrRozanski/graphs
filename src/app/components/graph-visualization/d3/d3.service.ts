@@ -4,7 +4,7 @@ import * as d3 from 'd3';
 
 @Injectable()
 export class D3Service {
-  /** This service will provide methods to enable user interaction with elements
+  /** This service will provide methods to enable user interaction with graph_model
     * while maintaining the d3 simulations physics
     */
   constructor() { }
@@ -30,7 +30,7 @@ export class D3Service {
     const d3element = d3.select(element);
 
     function started() {
-      /** Preventing propagation of dragstart to parent elements */
+      /** Preventing propagation of dragstart to parent graph_model */
       d3.event.sourceEvent.stopPropagation();
 
       if (!d3.event.active) {

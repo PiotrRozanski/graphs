@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ElementOfTable} from '../elements/ElementOfTable';
-import {Vertex} from '../elements/Vertex';
-import {Edge} from '../elements/Edge';
+import {ElementOfTable} from '../../graph_model/ElementOfTable';
+import {Vertex} from '../../graph_model/Vertex';
+import {Edge} from '../../graph_model/Edge';
 import {Link, Node} from '../../graph-visualization/d3/models';
 
 @Component({
