@@ -1,3 +1,4 @@
+// Todo zlikwidować po dodaniu graph model
 export class Vertex {
   public id: number;
   public label: string;

@@ -1,7 +1,7 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {ElementOfTable} from '../elements/ElementOfTable';
-import {Vertex} from '../elements/Vertex';
-import {Edge} from '../elements/Edge';
+import {ElementOfTable} from '../../graph_model/ElementOfTable';
+import {Vertex} from '../../graph_model/Vertex';
+import {Edge} from '../../graph_model/Edge';
 import {Matrix} from '../Matrix';
 
 

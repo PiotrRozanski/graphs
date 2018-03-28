@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ElementOfTable} from '../../components/generators/elements/ElementOfTable';
+import {ElementOfTable} from '../../components/graph_model/ElementOfTable';
 import {Link, Node} from '../../components/graph-visualization/d3/models';
 import {MatSnackBar} from '@angular/material';
 

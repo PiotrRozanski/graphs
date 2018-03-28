@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ElementOfTable} from '../../components/generators/elements/ElementOfTable';
+import {ElementOfTable} from '../../components/graph_model/ElementOfTable';
 
 @Component({
   selector: 'app-adjacency-list-page',
