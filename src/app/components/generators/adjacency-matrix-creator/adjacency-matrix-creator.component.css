@@ -1,0 +1,19 @@
+::ng-deep .mdl-data-table mdl-js-data-table {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.table-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.matrix {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

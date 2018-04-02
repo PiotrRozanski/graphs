@@ -1,18 +1,25 @@
-import {ElementOfTable} from '../graph_model/ElementOfTable';
-import {EventEmitter, Output} from '@angular/core';
+import {GraphModel} from '../graph_model/GraphModel';
 
 export class Matrix {
-  @Output() elementsOfMatrix: EventEmitter<ElementOfTable[][]> = new EventEmitter();
-  matrix: ElementOfTable[][] = [[]];
+  public graph: GraphModel = new GraphModel();
 
   constructor() {
   }
 
-  public setField(value: number, vertex: number, edge: number) {
-    this.matrix[vertex][edge].value = value;
+  protected addLink(firstVertex: number, secondVertex: number) {
+    this.graph.addLink(firstVertex, secondVertex);
   }
 
-  protected clearMatrix() {
-    this.matrix = [[]];
+  protected removeLink(firstVertex: number, secondVertex: number) {
+    this.graph.removeLink(firstVertex, secondVertex);
   }
+
+  protected addVertices(vertexCount: number) {
+    this.graph.addVertices(vertexCount);
+  }
+
+  protected clearGraph() {
+    this.graph = new GraphModel();
+  }
+
 }

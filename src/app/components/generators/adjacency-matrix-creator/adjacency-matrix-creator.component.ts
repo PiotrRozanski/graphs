@@ -1,8 +1,6 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {ElementOfTable} from '../../graph_model/ElementOfTable';
-import {Vertex} from '../../graph_model/Vertex';
-import {Edge} from '../../graph_model/Edge';
 import {Matrix} from '../Matrix';
+import {GraphModel} from '../../graph_model/GraphModel';
 
 
 @Component({
@@ -11,7 +9,9 @@ import {Matrix} from '../Matrix';
   styleUrls: ['./adjacency-matrix-creator.component.css']
 })
 export class AdjacencyMatrixCreatorComponent extends Matrix implements OnInit {
-  index = 2;
+  @Output() graphEvent: EventEmitter<GraphModel> = new EventEmitter();
+  matrix: number[][] = [[]];
+  vertexCount = 3;
 
   constructor() {
     super();
@@ -22,32 +22,55 @@ export class AdjacencyMatrixCreatorComponent extends Matrix implements OnInit {
   }
 
   public increaseMatrix() {
-    this.clearMatrix();
-    this.index++;
+    this.vertexCount++;
     this.prepareMatrix();
   }
 
   public decreaseMatrix() {
-    if (this.index > 1) {
-      this.clearMatrix();
-      this.index--;
+    if (this.vertexCount > 1) {
+      this.clearGraph();
+      this.vertexCount--;
       this.prepareMatrix();
     }
   }
 
   private prepareMatrix() {
-    for (let vertexID = 0; vertexID < this.index; vertexID++) {
-      this.matrix[vertexID] = [];
-      for (let edgeID = 0; edgeID < this.index; edgeID++) {
-        const vertex: Vertex = new Vertex(vertexID, vertexID.toString());
-        const edge: Edge = new Edge(edgeID, 1);
-        this.matrix[vertexID][edgeID] = new ElementOfTable(0, vertex, edge);
+    this.matrix = [[]];
+    for (let i = 0; i < this.vertexCount; i++) {
+      this.matrix[i] = [];
+      for (let j = 0; j < this.vertexCount; j++) {
+        this.matrix[i][j] = 0;
       }
     }
-    this.elementsOfMatrix.emit(this.matrix);
+    this.addVertices(this.vertexCount);
+    this.setLinksForMatrix();
+    this.graphEvent.emit(this.graph);
+  }
+
+  private setLinksForMatrix(): void {
+    for (let i = 0; i < this.graph.links.length; i++) {
+      const source = this.graph.links[i].source;
+      const target = this.graph.links[i].target;
+      this.setMatrix(1, source, target);
+    }
+  }
+
+  protected addLink(firstVertex: number, secondVertex: number): void {
+    super.addLink(firstVertex, secondVertex);
+    this.prepareMatrix();
+  }
+
+  protected removeLink(firstVertex: number, secondVertex: number): void {
+    super.removeLink(firstVertex, secondVertex);
+    this.prepareMatrix();
+  }
+
+  private setMatrix(value: number, firstVertex: number, secondVertex: number) {
+    this.matrix[firstVertex][secondVertex] = value;
+    this.matrix[secondVertex][firstVertex] = value;
   }
 
   public checkElementOfMatrix(vertex: number, edge: number): boolean {
-    return vertex !== edge;
+    return vertex === edge;
   }
 }

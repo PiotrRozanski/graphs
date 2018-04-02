@@ -21,7 +21,6 @@ export class AdjacencyListComponent implements OnInit {
   }
 
   generateGraph() {
-      console.log(this.elements.length);
       this.clearGraphElements();
       for (let i = 0; i < this.elements.length; i++) {
         if (this.elements[i].value === 1) {
