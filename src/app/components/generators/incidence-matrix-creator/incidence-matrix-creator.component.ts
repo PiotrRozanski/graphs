@@ -2,7 +2,7 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {ElementOfTable} from '../../graph_model/ElementOfTable';
 import {Vertex} from '../../graph_model/Vertex';
 import {Edge} from '../../graph_model/Edge';
-import {Matrix} from '../Matrix';
+import {DefaultMatrix} from '../DefaultMatrix';
 
 @Component({
   selector: 'app-incidence-matrix-creator',
@@ -10,7 +10,7 @@ import {Matrix} from '../Matrix';
   styleUrls: ['./incidence-matrix-creator.component.css']
 })
 // Todo zmienic dodawanie wierszy i kolumn
-export class IncidenceMatrixCreatorComponent extends Matrix implements OnInit {
+export class IncidenceMatrixCreatorComponent extends DefaultMatrix implements OnInit {
   verticesCount = 3;
   edgesCount = 2;
 

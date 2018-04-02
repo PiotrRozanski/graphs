@@ -1,8 +1,12 @@
-<table class="mdl-data-table mdl-js-data-table">
-  <td class="mdl-data-table__cell--non-numeric">
-    <app-adjacency-matrix-creator (elementsOfMatrix)="onCreatedMatrix($event)"></app-adjacency-matrix-creator>
-  </td>
-  <td class="mdl-data-table__cell--non-numeric">
-    <app-adjacency-matrix [elements]="elements"></app-adjacency-matrix>
-  </td>
-</table>
+<mat-tab-group>
+
+  <mat-tab label="Matrix">
+    <app-adjacency-matrix-creator (graphEvent)="onCreatedMatrix($event)"></app-adjacency-matrix-creator>
+  </mat-tab>
+
+  <mat-tab label="Graph">
+    <app-adjacency-matrix [graph]="graph"></app-adjacency-matrix>
+  </mat-tab>
+
+</mat-tab-group>
+

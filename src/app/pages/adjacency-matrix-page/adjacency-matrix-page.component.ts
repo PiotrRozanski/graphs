@@ -1,13 +1,13 @@
 import {Component, OnInit} from '@angular/core';
-import {ElementOfTable} from '../../components/graph_model/ElementOfTable';
+import {GraphModel} from '../../components/graph_model/GraphModel';
 
 @Component({
   selector: 'app-adjacency-matrix-page',
   templateUrl: './adjacency-matrix-page.component.html',
-  styleUrls: ['./adjacency-matrix-page.component.css']
+  styleUrls: ['./adjacency-matrix-page.component.css'],
 })
 export class AdjacencyMatrixPageComponent implements OnInit {
-  elements: ElementOfTable[][];
+  public graph: GraphModel = new GraphModel();
 
   constructor() {
   }
@@ -15,8 +15,8 @@ export class AdjacencyMatrixPageComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onCreatedMatrix(elementsOfMatrix: ElementOfTable[][]) {
-    this.elements = elementsOfMatrix;
+  public onCreatedMatrix(graph: GraphModel) {
+    this.graph = graph;
   }
 
 }

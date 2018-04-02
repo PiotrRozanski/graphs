@@ -45,7 +45,6 @@ export class MatrixGeneratorComponent implements OnInit {
         }
       }
     }
-    console.log(this.list);
   }
 
   private createAdjacencyMatrix() {
@@ -86,17 +85,14 @@ export class MatrixGeneratorComponent implements OnInit {
       target = element.target.valueOf();
       const vertex = new Vertex(source.id, source.id.toString());
       const edge = new Edge(target.id, 1);
-      console.log(element.index);
       this.list[target.id - 1][source.id - 1] = new ElementOfTable(1, vertex, edge);
 
       this.type = 'adjacency_list';
     });
     this.prepareDataList();
-    console.log(this.list);
   }
 
   private prepareDataList() {
-    console.log(this.links);
     let linkID;
     let edgeId;
     for (let j = 0; j < this.nodes.length; j++) {
@@ -109,7 +105,6 @@ export class MatrixGeneratorComponent implements OnInit {
       }
       this.listText[j] = this.listText[j].replace('undefined', '');
     }
-    // console.log(this.listText.length);
   }
 
   // private prepareDataList() {
@@ -120,6 +115,5 @@ export class MatrixGeneratorComponent implements OnInit {
   //       }
   //     }
   //   }
-  //   console.log(this.listText.length);
   // }
 }

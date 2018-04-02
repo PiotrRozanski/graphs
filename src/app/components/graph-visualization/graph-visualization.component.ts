@@ -2,13 +2,12 @@ import {
   AfterViewInit,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
-  Component, DoCheck,
+  Component,
   Input, OnDestroy,
   OnInit
 } from '@angular/core';
 import {ForceDirectedGraph} from './d3/models';
 import {D3Service} from './d3';
-import {GraphComponent} from '@swimlane/ngx-graph/release/graph/graph.component';
 import {GraphSingleton} from './singletons/GraphSingleton';
 
 @Component({
@@ -27,6 +26,7 @@ export class GraphVisualizationComponent implements OnInit, AfterViewInit, OnDes
   }
 
   ngOnInit() {
+    delete this.graph;
     /** Receiving an initialized simulated graph from our custom d3 service */
     this.graph = this.d3Service.getForceDirectedGraph(this.nodes, this.links, this.options);
     /** Binding change detection check on each tick
@@ -41,15 +41,13 @@ export class GraphVisualizationComponent implements OnInit, AfterViewInit, OnDes
   }
 
   ngAfterViewInit() {
-    console.log('ngAfterViewInit');
     this.graph.initSimulation(this.options);
-    console.log('finish');
   }
 
   get options() {
     return this._options = {
-      width: 550,
-      height: 500
+      width: 1365,
+      height: 460
     };
   }
 

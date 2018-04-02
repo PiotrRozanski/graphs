@@ -65,8 +65,6 @@ export class AdjacencyListCreatorComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(): void {
-    console.log(this.inputText);
-
   }
 
 }

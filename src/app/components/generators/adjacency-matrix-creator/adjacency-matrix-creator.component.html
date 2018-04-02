@@ -13,39 +13,41 @@
       </h3>
     </div>
 
-    <table class="mdl-data-table mdl-js-data-table">
-      <td class="mdl-data-table__cell--non-numeric"></td>
-      <td class="mdl-data-table__cell--non-numeric" *ngFor="let i of matrix; let edge = index">
-        <button mat-button disabled>
-          <button
-            class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect  mdl-button--mini-fab mdl-button--colored"
-            disabled>
-            {{edge + 1}}
-          </button>
-        </button>
-      </td>
-      <tr class="mdl-data-table__cell--non-numeric" *ngFor="let i of matrix; let vertex = index">
-        <td class="mdl-data-table__cell--non-numeric">
-          <button
-            class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect  mdl-button--mini-fab mdl-button--colored"
-            disabled>
-            {{vertex + 1}}
+    <div class="matrix">
+      <table class="mdl-data-table mdl-js-data-table">
+        <td class="mdl-data-table__cell--non-numeric"></td>
+        <td class="mdl-data-table__cell--non-numeric" *ngFor="let i of matrix; let edge = index">
+          <button mat-button disabled>
+            <button
+              class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect  mdl-button--mini-fab mdl-button--colored"
+              disabled>
+              {{edge + 1}}
+            </button>
           </button>
         </td>
-        <td class="mdl-data-table__cell--non-numeric" *ngFor="let j of i; let elementValue = index">
-          <button *ngIf="checkElementOfMatrix(vertex, elementValue)" mat-button [matMenuTriggerFor]="menu">
-            {{j.value}}
-            <mat-menu #menu="matMenu">
-              <button mat-menu-item (click)="setField(0,j.vertex.id,j.edge.id)">0</button>
-              <button mat-menu-item (click)="setField(1,j.vertex.id,j.edge.id)">1</button>
-            </mat-menu>
-          </button>
-          <button disabled *ngIf="!checkElementOfMatrix(vertex, elementValue)" mat-button>
-            {{0}}
-          </button>
-        </td>
-      </tr>
-    </table>
+        <tr class="mdl-data-table__cell--non-numeric" *ngFor="let i of matrix; let firstVertex = index">
+          <td class="mdl-data-table__cell--non-numeric">
+            <button
+              class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect  mdl-button--mini-fab mdl-button--colored"
+              disabled>
+              {{firstVertex + 1}}
+            </button>
+          </td>
+          <td class="mdl-data-table__cell--non-numeric" *ngFor="let j of i; let secondVertex = index">
+            <button *ngIf="!checkElementOfMatrix(firstVertex, secondVertex)" mat-button [matMenuTriggerFor]="menu">
+              {{j}}
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="removeLink(firstVertex, secondVertex)">0</button>
+                <button mat-menu-item (click)="addLink(firstVertex,secondVertex)">1</button>
+              </mat-menu>
+            </button>
+            <button disabled *ngIf="checkElementOfMatrix(firstVertex, secondVertex)" mat-button>
+              {{0}}
+            </button>
+          </td>
+        </tr>
+      </table>
+    </div>
 
   </div>
 </div>
