@@ -27,14 +27,18 @@ export class AdjacencyMatrixCreatorComponent extends Matrix implements OnInit {
   }
 
   public decreaseMatrix() {
-    if (this.vertexCount > 1) {
+    if (this.vertexCount > 2) {
       this.clearGraph();
       this.vertexCount--;
       this.prepareMatrix();
     }
   }
 
-  private prepareMatrix() {
+  public checkElementOfMatrix(vertex: number, edge: number): boolean {
+    return vertex === edge;
+  }
+
+  protected prepareMatrix() {
     this.matrix = [[]];
     for (let i = 0; i < this.vertexCount; i++) {
       this.matrix[i] = [];
@@ -47,13 +51,6 @@ export class AdjacencyMatrixCreatorComponent extends Matrix implements OnInit {
     this.graphEvent.emit(this.graph);
   }
 
-  private setLinksForMatrix(): void {
-    for (let i = 0; i < this.graph.links.length; i++) {
-      const source = this.graph.links[i].source;
-      const target = this.graph.links[i].target;
-      this.setMatrix(1, source, target);
-    }
-  }
 
   protected addLink(firstVertex: number, secondVertex: number): void {
     super.addLink(firstVertex, secondVertex);
@@ -65,12 +62,9 @@ export class AdjacencyMatrixCreatorComponent extends Matrix implements OnInit {
     this.prepareMatrix();
   }
 
-  private setMatrix(value: number, firstVertex: number, secondVertex: number) {
-    this.matrix[firstVertex][secondVertex] = value;
-    this.matrix[secondVertex][firstVertex] = value;
-  }
 
-  public checkElementOfMatrix(vertex: number, edge: number): boolean {
-    return vertex === edge;
+  protected setMatrix(value: number, firstVertex: number, secondVertex: number): void {
+    super.setMatrix(value, firstVertex, secondVertex);
+    super.setMatrix(value, secondVertex, firstVertex);
   }
 }

@@ -15,6 +15,7 @@ export class GraphModel {
         return;
       }
     }
+    console.log( source + '/' + target);
     this.links.push(new Link(1, source, target));
   }
 
@@ -22,6 +23,7 @@ export class GraphModel {
     for (let i = 0; i < this.links.length; i++) {
       if (this.links[i].source === source && this.links[i].target === target) {
         this.links.splice(i, 1);
+        console.log( source + '/' + target);
       }
     }
     return;

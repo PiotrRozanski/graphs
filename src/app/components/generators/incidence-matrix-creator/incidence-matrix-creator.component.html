@@ -2,57 +2,59 @@
   <div class="table-responsive">
 
     <div class="table-header">
-      <h3 [attr.colspan]="index" class="mdl-data-table__cell--non-numeric">
+      <h3 [attr.colspan]="index" class="mdl-data-table__cell--non-numeric" class="buttons">
         Incidence matrix
-        <br>
-        Vertex
-        <button (click)="addVertex()"
-                class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect  mdl-button--mini-fab mdl-button--colored">
-          <i class="material-icons">add</i></button>
-        <button (click)="removeVertex()"
-                class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect  mdl-button--mini-fab mdl-button--colored">
-          <i class="material-icons">remove</i></button>
-        <br>
-        Edge
-        <button (click)="addEdge()"
-                class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect  mdl-button--mini-fab mdl-button--colored">
-          <i class="material-icons">add</i></button>
-        <button (click)="removeEdge()"
-                class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect  mdl-button--mini-fab mdl-button--colored">
-          <i class="material-icons">remove</i></button>
       </h3>
     </div>
 
-    <table class="mdl-data-table mdl-js-data-table">
-      <td class="mdl-data-table__cell--non-numeric"></td>
-      <td class="mdl-data-table__cell--non-numeric" *ngFor="let i of matrix[0]; let edge = index">
-        <button mat-button disabled>
-          <button
-            class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect  mdl-button--mini-fab mdl-button--colored"
-            disabled>
-            {{edge + 1}}
-          </button>
-        </button>
-      </td>
-      <tr class="mdl-data-table__cell--non-numeric" *ngFor="let i of matrix; let vertex = index">
-        <td class="mdl-data-table__cell--non-numeric">
-          <button
-            class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect  mdl-button--mini-fab mdl-button--colored"
-            disabled>
-            {{vertex + 1}}
+    <div class="Matrix">
+      <table class="mdl-data-table mdl-js-data-table">
+        <td class="mdl-data-table__cell--non-numeric"></td>
+        <td class="mdl-data-table__cell--non-numeric" *ngFor="let i of matrix[0]; let edge = index">
+          <button mat-button disabled>
+            <button
+              class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect  mdl-button--mini-fab mdl-button--colored"
+              disabled>
+              {{edge + 1}}
+            </button>
           </button>
         </td>
-        <td class="mdl-data-table__cell--non-numeric" *ngFor="let j of i; let elementValue = index">
-          <button mat-button [matMenuTriggerFor]="menu">
-            {{j.value}}
-            <mat-menu #menu="matMenu">
-              <button mat-menu-item (click)="setField(0,j.vertex.id,j.edge.id)">0</button>
-              <button mat-menu-item (click)="setField(1,j.vertex.id,j.edge.id)">1</button>
-            </mat-menu>
-          </button>
-        </td>
-      </tr>
-    </table>
+        <tr class="mdl-data-table__cell--non-numeric" *ngFor="let i of matrix; let vertex = index">
+          <td class="mdl-data-table__cell--non-numeric">
+            <button
+              class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect  mdl-button--mini-fab mdl-button--colored"
+              disabled>
+              {{vertex + 1}}
+            </button>
+          </td>
+          <td class="mdl-data-table__cell--non-numeric" *ngFor="let j of i; let edge = index">
+            <button mat-button [matMenuTriggerFor]="menu">
+              {{j}}
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="removeLink(vertex, edge)">0</button>
+                <button mat-menu-item (click)="addLink(vertex,edge)">1</button>
+              </mat-menu>
+            </button>
+          </td>
+        </tr>
+      </table>
+      <h6>
+        <button (click)="addVertex()"
+                class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect  mdl-button--mini-fab mdl-button--colored">
+          <i class="material-icons">add</i></button>
+        Vertex
+        <button (click)="removeVertex()"
+                class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect  mdl-button--mini-fab mdl-button--colored">
+          <i class="material-icons">remove</i></button>
+        <button (click)="addEdge()"
+                class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect  mdl-button--mini-fab mdl-button--colored">
+          <i class="material-icons">add</i></button>
+        Edge
+        <button (click)="removeEdge()"
+                class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect  mdl-button--mini-fab mdl-button--colored">
+          <i class="material-icons">remove</i></button>
+      </h6>
+    </div>
 
   </div>
 </div>
