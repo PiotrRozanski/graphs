@@ -1,8 +1,11 @@
-<table class="mdl-data-table mdl-js-data-table">
-  <td class="mdl-data-table__cell--non-numeric">
-    <app-incidence-matrix-creator (elementsOfMatrix)="onCreatedMatrix($event)"></app-incidence-matrix-creator>
-  </td>
-  <td class="mdl-data-table__cell--non-numeric">
-    <app-incidence-matrix [elements]="elements"></app-incidence-matrix>
-  </td>
-</table>
+<mat-tab-group>
+
+  <mat-tab label="Matrix">
+    <app-incidence-matrix-creator (graphEvent)="onCreatedMatrix($event)"></app-incidence-matrix-creator>
+  </mat-tab>
+
+  <mat-tab label="Graph">
+    <app-incidence-matrix [graph]="graph"></app-incidence-matrix>
+  </mat-tab>
+
+</mat-tab-group>

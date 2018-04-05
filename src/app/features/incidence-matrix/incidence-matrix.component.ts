@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Link, Node} from '../../components/graph-visualization/d3/models';
-import {ElementOfTable} from '../../components/graph_model/ElementOfTable';
 import {MatSnackBar} from '@angular/material';
+import {GraphModel} from '../../components/graph_model/GraphModel';
 
 @Component({
   selector: 'app-incidence-matrix',
@@ -9,7 +9,7 @@ import {MatSnackBar} from '@angular/material';
   styleUrls: ['./incidence-matrix.component.css']
 })
 export class IncidenceMatrixComponent implements OnInit {
-  @Input() elements: ElementOfTable[][];
+  @Input() graph: GraphModel;
   isEnable = false;
   nodes: Node[] = [];
   links: Link[] = [];
@@ -20,91 +20,37 @@ export class IncidenceMatrixComponent implements OnInit {
   ngOnInit() {
   }
 
-  generateGraph() {
+  async generateGraph() {
+    this.isEnable = false;
     this.clearGraphElements();
-    this.prepareNodes();
-    this.validateIncidenceMatrix();
-    for (let edge = 0; edge < this.elements[0].length; edge++) {
-      this.checkLinks(edge);
+    await this.sleep(1);
+    for (let i = 0; i < this.graph.links.length; i++) {
+      const source = this.graph.links[i].source;
+      const target = this.graph.links[i].target;
+      this.prepareLinks(source, target);
     }
-    this.checkMatrixVertices();
+    this.prepareNodes();
+    this.isEnable = true;
+  }
+
+  private sleep(ms) {
+    return new Promise(r => setTimeout(r, ms));
   }
 
   private prepareNodes() {
-    for (let id = 0; id < this.elements.length; id++) {
+    for (let id = 0; id < this.graph.nodes.length; id++) {
       this.nodes.push(new Node(id + 1));
     }
   }
 
-  private checkLinks(edge: number) {
-    const link: number[] = [];
-    for (let vertex = 0; vertex < this.elements.length; vertex++) {
-      if (this.elements[vertex][edge].value === 1) {
-        link.push(vertex + 1);
-      }
-    }
-    this.prepareLinks(link[0], link[1]);
-  }
-
   private prepareLinks(source: number, target: number) {
-    this.links.push(new Link(source, target));
+    this.links.push(new Link(source + 1, target + 1));
   }
 
   private openSnackBar(info: string) {
     this.snackBar.open(info, null, {
       duration: 3000
     });
-  }
-
-  // Todo zastanowić się jak to zlikwidować
-  private disableGraph() {
-    this.isEnable = false;
-  }
-
-  private validateIncidenceMatrix(): boolean {
-    let edgeCount = 0;
-    let vertexCount = 0;
-    for (let edge = 0; edge < this.elements[0].length; edge++) {
-      for (let vertex = 0; vertex < this.elements.length; vertex++) {
-
-        if (this.elements[vertex][edge].value === 1) {
-          edgeCount++;
-        }
-      }
-      if (vertexCount <= this.elements.length) {
-        vertexCount++;
-      }
-      this.checkMatrixEdges(edgeCount);
-      edgeCount = 0;
-    }
-    return true;
-  }
-
-  private checkMatrixEdges(edgeCount: number) {
-    if (edgeCount !== 2) {
-      this.openSnackBar('ERROR: Incorrect values in the incidence matrix. The incident matrix must not have more than two edges');
-      this.clearGraphElements();
-      this.isEnable = false;
-    } else {
-      this.isEnable = true;
-    }
-  }
-
-  private checkMatrixVertices() {
-    for (let vertex = 0; vertex < this.elements.length; vertex++) {
-      let vertexCount = 0;
-      for (let edge = 0; edge < this.elements[vertex].length; edge++) {
-        if (this.elements[vertex][edge].value === 1) {
-          vertexCount++;
-        }
-      }
-      if (vertexCount === 0) {
-        this.openSnackBar('ERROR: Incorrect values in the incidence matrix');
-        this.isEnable = false;
-        return;
-      }
-    }
-    this.isEnable = true;
   }
 
   clearGraphElements() {

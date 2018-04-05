@@ -3,6 +3,8 @@ import {ElementOfTable} from '../../graph_model/ElementOfTable';
 import {Vertex} from '../../graph_model/Vertex';
 import {Edge} from '../../graph_model/Edge';
 import {DefaultMatrix} from '../DefaultMatrix';
+import {Matrix} from '../Matrix';
+import {GraphModel} from '../../graph_model/GraphModel';
 
 @Component({
   selector: 'app-incidence-matrix-creator',
@@ -10,9 +12,10 @@ import {DefaultMatrix} from '../DefaultMatrix';
   styleUrls: ['./incidence-matrix-creator.component.css']
 })
 // Todo zmienic dodawanie wierszy i kolumn
-export class IncidenceMatrixCreatorComponent extends DefaultMatrix implements OnInit {
-  verticesCount = 3;
-  edgesCount = 2;
+export class IncidenceMatrixCreatorComponent extends Matrix implements OnInit {
+  @Output() graphEvent: EventEmitter<GraphModel> = new EventEmitter();
+  private verticesCount = 3;
+  private edgesCount = 2;
 
   constructor() {
     super();
@@ -22,8 +25,9 @@ export class IncidenceMatrixCreatorComponent extends DefaultMatrix implements On
     this.prepareMatrix();
   }
 
+  // ToDo addVertex i addEdge zamienic na jedną metodę
   public addVertex() {
-    this.clearMatrix();
+    this.matrix = [];
     this.verticesCount++;
     if (this.verticesCount === this.edgesCount) {
       this.verticesCount++;
@@ -32,8 +36,8 @@ export class IncidenceMatrixCreatorComponent extends DefaultMatrix implements On
   }
 
   public removeVertex() {
-    if (this.verticesCount > 1) {
-      this.clearMatrix();
+    if (this.verticesCount > 2) {
+      this.matrix = [];
       this.verticesCount--;
       if (this.verticesCount === this.edgesCount) {
         this.verticesCount--;
@@ -43,7 +47,7 @@ export class IncidenceMatrixCreatorComponent extends DefaultMatrix implements On
   }
 
   public addEdge() {
-    this.clearMatrix();
+    this.matrix = [];
     this.edgesCount++;
     if (this.verticesCount === this.edgesCount) {
       this.edgesCount++;
@@ -52,8 +56,8 @@ export class IncidenceMatrixCreatorComponent extends DefaultMatrix implements On
   }
 
   public removeEdge() {
-    if (this.edgesCount > 1) {
-      this.clearMatrix();
+    if (this.edgesCount > 2) {
+      this.matrix = [];
       this.edgesCount--;
       if (this.verticesCount === this.edgesCount) {
         this.edgesCount--;
@@ -62,17 +66,47 @@ export class IncidenceMatrixCreatorComponent extends DefaultMatrix implements On
     }
   }
 
-  private prepareMatrix() {
-    for (let vertexID = 0; vertexID < this.verticesCount; vertexID++) {
-      this.matrix[vertexID] = [];
-      for (let edgeID = 0; edgeID < this.edgesCount; edgeID++) {
-        const vertex: Vertex = new Vertex(vertexID, vertexID.toString());
-        const edge: Edge = new Edge(edgeID, 1);
-        this.matrix[vertexID][edgeID] = new ElementOfTable(0, vertex, edge);
+  protected prepareMatrix() {
+    this.matrix = [[]];
+    for (let i = 0; i < this.verticesCount; i++) {
+      this.matrix[i] = [];
+      for (let j = 0; j < this.edgesCount; j++) {
+        this.matrix[i][j] = 0;
       }
     }
-    if ((this.verticesCount - this.edgesCount) === 1 || (this.verticesCount - this.edgesCount) === -1) {
-      this.elementsOfMatrix.emit(this.matrix);
+    this.addVertices(this.verticesCount);
+    this.graphEvent.emit(this.graph);
+  }
+
+
+  protected addLink(vertex: number, edge: number): void {
+    if (!this.validateMatrix(edge)) {
+      return;
     }
+    this.setMatrix(1, vertex, edge);
+    for (let i = 0; i < this.verticesCount; i++) {
+      if (this.matrix[i][edge] === 1 && i !== vertex) {
+        super.addLink(i, vertex);
+      }
+    }
+  }
+
+  protected removeLink(vertex: number, edge: number): void {
+    this.setMatrix(0, vertex, edge);
+    for (let i = 0; i < this.verticesCount; i++) {
+      if (this.matrix[i][edge] === 1 && i !== vertex) {
+        super.removeLink(i, vertex);
+      }
+    }
+  }
+
+  private validateMatrix(edge: number): boolean {
+    let count = 0;
+    for (let i = 0; i < this.verticesCount; i++) {
+      if (this.matrix[i][edge] === 1) {
+        count++;
+      }
+    }
+    return count < 2;
   }
 }
