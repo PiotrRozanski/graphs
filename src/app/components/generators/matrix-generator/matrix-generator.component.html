@@ -33,7 +33,7 @@
         </td>
         <td class="mdl-data-table__cell--non-numeric" *ngFor="let j of i; let elementValue = index">
           <button mat-button>
-            {{j.value}}
+            {{j}}
           </button>
         </td>
       </tr>
@@ -41,7 +41,7 @@
 
     <table *ngIf="type==='incidence_matrix'" ngclass="mdl-data-table mdl-js-data-table">
       <td class="mdl-data-table__cell--non-numeric"></td>
-      <td class="mdl-data-table__cell--non-numeric" *ngFor="let i of nodes; let node = index">
+      <td class="mdl-data-table__cell--non-numeric" *ngFor="let i of links; let node = index">
         <button mat-button disabled>
           <button
             class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect  mdl-button--mini-fab mdl-button--colored"
@@ -60,7 +60,7 @@
         </td>
         <td class="mdl-data-table__cell--non-numeric" *ngFor="let j of i; let elementValue = index">
           <button mat-button>
-            {{j.value}}
+            {{j}}
           </button>
         </td>
       </tr>
