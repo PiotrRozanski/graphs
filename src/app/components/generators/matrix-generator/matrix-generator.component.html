@@ -1,18 +1,9 @@
-<div class="container-fluid">
-  <div class="table-responsive">
+<mat-tab-group>
 
-    <button (click)="createAdjacencyMatrix()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
-      Generate adjacency matrix
-    </button>
-    <button (click)="createIncidenceMatrix()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
-      Generate incidence matrix
-    </button>
-    <button (click)="createAdjacencylist()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
-      Generate adjacency list
-    </button>
-
-
-    <table *ngIf="type==='adjacency_matrix'" ngclass="mdl-data-table mdl-js-data-table">
+  <mat-tab label="Adjacency matrix">
+    <button mat-button color="primary" (click)="createAdjacencyMatrix()"><h5>Generate</h5></button>
+    <div class="Matrix">
+    <table *ngIf="type==='adjacency_matrix'" class="mdl-data-table mdl-js-data-table">
       <td class="mdl-data-table__cell--non-numeric"></td>
       <td class="mdl-data-table__cell--non-numeric" *ngFor="let i of nodes; let node = index">
         <button mat-button disabled>
@@ -33,15 +24,20 @@
         </td>
         <td class="mdl-data-table__cell--non-numeric" *ngFor="let j of i; let elementValue = index">
           <button mat-button>
-            {{j.value}}
+            {{j}}
           </button>
         </td>
       </tr>
     </table>
+    </div>
+  </mat-tab>
 
-    <table *ngIf="type==='incidence_matrix'" ngclass="mdl-data-table mdl-js-data-table">
+  <mat-tab label="Incidence matrix">
+    <button mat-button color="primary" (click)="createIncidenceMatrix()"><h5>Generate</h5></button>
+    <div class="Matrix">
+    <table *ngIf="type==='incidence_matrix'" class="mdl-data-table mdl-js-data-table">
       <td class="mdl-data-table__cell--non-numeric"></td>
-      <td class="mdl-data-table__cell--non-numeric" *ngFor="let i of nodes; let node = index">
+      <td class="mdl-data-table__cell--non-numeric" *ngFor="let i of links; let node = index">
         <button mat-button disabled>
           <button
             class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect  mdl-button--mini-fab mdl-button--colored"
@@ -60,15 +56,18 @@
         </td>
         <td class="mdl-data-table__cell--non-numeric" *ngFor="let j of i; let elementValue = index">
           <button mat-button>
-            {{j.value}}
+            {{j}}
           </button>
         </td>
       </tr>
     </table>
+    </div>
+  </mat-tab>
 
-    <div *ngIf="type==='adjacency_list'" class="container-fluid">
+  <mat-tab label="Adjacency list">
+    <button mat-button color="primary" (click)="createAdjacencylist()"><h5>Generate</h5></button>
+    <div *ngIf="type==='adjacency_list'" class="Matrix">
       <div class="table-responsive">
-
         <div *ngFor="let element of listText; let index = index">
           <form action="#">
             {{index + 1}}
@@ -79,10 +78,8 @@
             </div>
           </form>
         </div>
-
       </div>
     </div>
+  </mat-tab>
 
-
-  </div>
-</div>
+</mat-tab-group>
