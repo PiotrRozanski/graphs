@@ -1,0 +1,11 @@
+<mat-tab-group>
+
+  <mat-tab label="Formularz">
+    <app-input-form-creator (graphModel)="onCreatedForm($event)"></app-input-form-creator>
+  </mat-tab>
+
+  <mat-tab label="Graf">
+    <app-input-form [graph]="graph"></app-input-form>
+  </mat-tab>
+
+</mat-tab-group>

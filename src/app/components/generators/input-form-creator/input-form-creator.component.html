@@ -1,0 +1,44 @@
+<div class="container-fluid">
+  <div class="table-responsive">
+
+    <div *ngFor="let node of graph.nodes">
+      <form action="#">
+        {{node.id}}.
+        <div class="mdl-textfield mdl-js-textfield">
+          <input class="mdl-textfield__input" type="text" [(ngModel)]="inputText[node.id]"
+                 [ngModelOptions]="{standalone: true}" id="sample">
+          <label class="mdl-textfield__label" for="sample">Etykieta</label>
+          <span class="mdl-textfield__error">Input is not a adjacency list</span>
+        </div>
+      </form>
+    </div>
+
+    <button mat-button (click)="increaseNodeAmount()">Dodaj wierzchołek</button>
+
+    <h3></h3>
+
+    <div *ngFor="let link of graph.links">
+      <form action="#">
+        .
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select">
+          <select [(ngModel)]="link.source" class="mdl-selectfield__select" id="from" name="Od">
+            <option value=""></option>
+            <option *ngFor="let node of graph.nodes" [value]="node.id">{{node.id}}</option>
+          </select>
+          <label class="mdl-selectfield__label" for="from">- Od</label>
+        </div>
+
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select">
+          <select [(ngModel)]="link.target" class="mdl-selectfield__select" id="to" name="Do">
+            <option value=""></option>
+            <option *ngFor="let node of graph.nodes" [value]="node.id">{{node.id}}</option>
+          </select>
+          <label class="mdl-selectfield__label" for="to">- Do</label>
+        </div>
+      </form>
+    </div>
+
+    <button mat-button (click)="increaseLinkAmount()">Dodaj krawedź</button>
+
+  </div>
+</div>
