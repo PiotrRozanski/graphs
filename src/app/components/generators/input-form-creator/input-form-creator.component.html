@@ -14,30 +14,22 @@
     </div>
 
     <button mat-button (click)="increaseNodeAmount()">Dodaj wierzchołek</button>
-
-    <h3></h3>
-
-    <div *ngFor="let link of graph.links">
+    <h6></h6>
+    <div class="edge" *ngFor="let link of graph.links">
       <form action="#">
-        .
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select">
           <select [(ngModel)]="link.source" class="mdl-selectfield__select" id="from" name="Od">
             <option value=""></option>
             <option *ngFor="let node of graph.nodes" [value]="node.id">{{node.id}}</option>
           </select>
-          <label class="mdl-selectfield__label" for="from">- Od</label>
-        </div>
-
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select">
+          <label class="mdl-selectfield__label" for="from"></label>
+            ------------------------------>
           <select [(ngModel)]="link.target" class="mdl-selectfield__select" id="to" name="Do">
             <option value=""></option>
             <option *ngFor="let node of graph.nodes" [value]="node.id">{{node.id}}</option>
           </select>
-          <label class="mdl-selectfield__label" for="to">- Do</label>
-        </div>
+          <label class="mdl-selectfield__label" for="to"></label>
       </form>
     </div>
-
     <button mat-button (click)="increaseLinkAmount()">Dodaj krawedź</button>
 
   </div>

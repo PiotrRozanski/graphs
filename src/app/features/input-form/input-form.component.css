@@ -1,0 +1,11 @@
+.mat-button {
+  display: block;
+  width: 100%;
+}
+
+.graph {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

@@ -20,15 +20,17 @@ export class AdjacencyListComponent implements OnInit {
   ngOnInit() {
   }
 
-  generateGraph() {
-      this.clearGraphElements();
-      for (let i = 0; i < this.elements.length; i++) {
-        if (this.elements[i].value === 1) {
-          this.prepareLinks(this.elements[i].vertex.id, this.elements[i].edge.id);
-        }
+  async generateGraph() {
+    this.isEnable = false;
+    this.clearGraphElements();
+    await this.sleep(1);
+    for (let i = 0; i < this.elements.length; i++) {
+      if (this.elements[i].value === 1) {
+        this.prepareLinks(this.elements[i].vertex.id, this.elements[i].edge.id);
       }
-      this.prepareNodes();
-      this.isEnable = true;
+    }
+    this.prepareNodes();
+    this.isEnable = true;
   }
 
   private prepareNodes() {
@@ -36,6 +38,11 @@ export class AdjacencyListComponent implements OnInit {
     for (let id = 0; id < lastElement.vertex.id; id++) {
       this.nodes.push(new Node(id + 1));
     }
+  }
+
+  // The program needs time to remove previously graph
+  private sleep(ms) {
+    return new Promise(r => setTimeout(r, ms));
   }
 
   private prepareLinks(source: number, target: number) {
