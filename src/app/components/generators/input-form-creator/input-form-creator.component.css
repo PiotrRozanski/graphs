@@ -1,0 +1,13 @@
+.table-responsive {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.edge {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

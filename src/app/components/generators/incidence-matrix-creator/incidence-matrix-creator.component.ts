@@ -29,9 +29,6 @@ export class IncidenceMatrixCreatorComponent extends Matrix implements OnInit {
   public addVertex() {
     this.matrix = [];
     this.verticesCount++;
-    if (this.verticesCount === this.edgesCount) {
-      this.verticesCount++;
-    }
     this.prepareMatrix();
   }
 
@@ -39,9 +36,6 @@ export class IncidenceMatrixCreatorComponent extends Matrix implements OnInit {
     if (this.verticesCount > 2) {
       this.matrix = [];
       this.verticesCount--;
-      if (this.verticesCount === this.edgesCount) {
-        this.verticesCount--;
-      }
       this.prepareMatrix();
     }
   }
@@ -49,19 +43,13 @@ export class IncidenceMatrixCreatorComponent extends Matrix implements OnInit {
   public addEdge() {
     this.matrix = [];
     this.edgesCount++;
-    if (this.verticesCount === this.edgesCount) {
-      this.edgesCount++;
-    }
     this.prepareMatrix();
   }
 
   public removeEdge() {
-    if (this.edgesCount > 2) {
+    if (this.edgesCount > 1) {
       this.matrix = [];
       this.edgesCount--;
-      if (this.verticesCount === this.edgesCount) {
-        this.edgesCount--;
-      }
       this.prepareMatrix();
     }
   }

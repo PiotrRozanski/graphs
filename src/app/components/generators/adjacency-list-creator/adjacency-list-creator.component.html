@@ -9,7 +9,6 @@
       <button (click)="decreaseList()"
               class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect  mdl-button--mini-fab mdl-button--colored">
         <i class="material-icons">remove</i></button>
-      <button mat-button (click)="generateGraph()">Generate</button>
     </h3>
 
     <div *ngFor="let element of elements">
@@ -22,6 +21,8 @@
       </div>
     </form>
     </div>
+
+    <button mat-button (click)="generateGraph()">Generate</button>
 
   </div>
 </div>
