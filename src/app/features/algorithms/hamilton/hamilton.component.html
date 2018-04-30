@@ -1,0 +1,28 @@
+<div>
+
+  <button mat-button color="primary" (click)="run(selectedNode)"><h5>Run algorithm</h5></button>
+
+  <br>
+
+  <mat-form-field>
+    <mat-select placeholder="Select node" [(value)]=selectedNode>
+      <mat-option *ngFor="let node of currentGraph.nodes" value="{{node.id + 1}}">
+        {{ node.id + 1 }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div class="result" *ngIf="isRunAlgorithm">
+    <br>
+
+    <p>{{algorithmResult}}</p>
+
+    <br>
+
+    <H2>Result:</H2>
+
+    <br>
+
+    <p>{{algorytmPath}}</p>
+  </div>
+</div>

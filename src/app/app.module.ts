@@ -7,7 +7,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import {MdlModule} from '@angular-mdl/core';
 import {NgxGraphModule} from '@swimlane/ngx-graph';
 import { AdjacencyMatrixCreatorComponent } from './components/generators/adjacency-matrix-creator/adjacency-matrix-creator.component';
-import {MatButtonModule, MatMenuModule, MatSnackBarModule, MatTabChangeEvent, MatTabsModule} from '@angular/material';
+import {MatButtonModule, MatMenuModule, MatSelectModule, MatSnackBarModule, MatTabChangeEvent, MatTabsModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { GraphVisualizationComponent } from './components/graph-visualization/graph-visualization.component';
 import { LinkVisualComponent } from './components/graph-visualization';
@@ -30,6 +30,7 @@ import { MatrixGeneratorComponent } from './components/generators/matrix-generat
 import { InputFormPageComponent } from './pages/input-form-page/input-form-page.component';
 import { InputFormComponent } from './features/input-form/input-form.component';
 import { InputFormCreatorComponent } from './components/generators/input-form-creator/input-form-creator.component';
+import {HamiltonComponent} from './features/algorithms/hamilton/hamilton.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { InputFormCreatorComponent } from './components/generators/input-form-cr
     MatrixGeneratorComponent,
     InputFormPageComponent,
     InputFormComponent,
-    InputFormCreatorComponent
+    InputFormCreatorComponent,
+    HamiltonComponent
   ],
   imports: [
     BrowserModule,
@@ -65,7 +67,8 @@ import { InputFormCreatorComponent } from './components/generators/input-form-cr
     MatSnackBarModule,
     Routing,
     FormsModule,
-    MatTabsModule
+    MatTabsModule,
+    MatSelectModule
   ],
   providers: [D3Service],
   bootstrap: [AppComponent]

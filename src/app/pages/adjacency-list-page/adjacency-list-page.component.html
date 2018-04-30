@@ -1,7 +1,9 @@
 <mat-tab-group>
+
   <mat-tab label="Adjacency list">
     <app-adjacency-list-creator (listElements)="onCreatedMatrix($event)"></app-adjacency-list-creator>
   </mat-tab>
+
   <mat-tab label="Graph">
     <app-adjacency-list [elements]="elements"></app-adjacency-list>
   </mat-tab>

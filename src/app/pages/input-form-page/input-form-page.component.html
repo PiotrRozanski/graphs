@@ -5,7 +5,11 @@
   </mat-tab>
 
   <mat-tab label="Graf">
-    <app-input-form [graph]="graph"></app-input-form>
+    <app-input-form (isCreatedGraph)="checkGraph($event)" [graph]="graph"></app-input-form>
+  </mat-tab>
+
+  <mat-tab *ngIf="isCreatedGraph" label="Hamilton cycle">
+    <app-hamilton [currentGraph]="graph"></app-hamilton>
   </mat-tab>
 
 </mat-tab-group>

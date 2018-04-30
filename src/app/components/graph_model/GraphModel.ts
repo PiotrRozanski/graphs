@@ -1,8 +1,8 @@
 import {Link} from './Link';
-import {Node} from './Node';
+import {Vertex} from './Vertex';
 
 export class GraphModel {
-  public nodes: Node[] = [];
+  public nodes: Vertex[] = [];
   public links: Link[] = [];
 
   constructor() {
@@ -15,7 +15,6 @@ export class GraphModel {
         return;
       }
     }
-    console.log( source + '/' + target);
     this.links.push(new Link(1, source, target));
   }
 
@@ -23,7 +22,6 @@ export class GraphModel {
     for (let i = 0; i < this.links.length; i++) {
       if (this.links[i].source === source && this.links[i].target === target) {
         this.links.splice(i, 1);
-        console.log( source + '/' + target);
       }
     }
     return;
@@ -32,7 +30,7 @@ export class GraphModel {
   public addVertices(vertexCount: number) {
     this.nodes = [];
     for (let i = 0; i < vertexCount; i++) {
-      this.nodes.push(new Node(i, i.toString()));
+      this.nodes.push(new Vertex(i, i.toString()));
     }
   }
 }

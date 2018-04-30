@@ -37,7 +37,7 @@ export class GraphVisualizationComponent implements OnInit, AfterViewInit, OnDes
     this.graph.ticker.subscribe((d) => {
       this.ref.markForCheck();
     });
-
+    GraphSingleton.Instance.AddData(this.nodes, this.links);
   }
 
   ngAfterViewInit() {
@@ -52,7 +52,6 @@ export class GraphVisualizationComponent implements OnInit, AfterViewInit, OnDes
   }
 
   ngOnDestroy() {
-    GraphSingleton.Instance.AddData(this.nodes, this.links);
   }
 
 }
