@@ -1,0 +1,13 @@
+<div>
+
+  <button mat-button color="primary" (click)="run(1)"><h5>Run algorithm</h5></button>
+
+  <mat-form-field>
+    <mat-select placeholder="Select node">
+      <mat-option *ngFor="let node of graph.nodes" [value]="1">
+        {{ 1 }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+</div>

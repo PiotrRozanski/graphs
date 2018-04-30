@@ -5,7 +5,11 @@
   </mat-tab>
 
   <mat-tab label="Graph">
-    <app-adjacency-matrix [graph]="graph"></app-adjacency-matrix>
+    <app-adjacency-matrix (isCreatedGraph)="checkGraph($event)" [graph]="graph"></app-adjacency-matrix>
+  </mat-tab>
+
+  <mat-tab *ngIf="isCreatedGraph" label="Hamilton cycle">
+    <app-hamilton></app-hamilton>
   </mat-tab>
 
 </mat-tab-group>
