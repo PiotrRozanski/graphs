@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Link, Node} from '../../components/graph-visualization/d3/models';
 import {MatSnackBar} from '@angular/material';
 import {GraphModel} from '../../components/graph_model/GraphModel';
@@ -10,6 +10,7 @@ import {GraphModel} from '../../components/graph_model/GraphModel';
 })
 export class IncidenceMatrixComponent implements OnInit {
   @Input() graph: GraphModel;
+  @Output() isCreatedGraph = new EventEmitter<Boolean>();
   isEnable = false;
   nodes: Node[] = [];
   links: Link[] = [];
@@ -31,6 +32,7 @@ export class IncidenceMatrixComponent implements OnInit {
     }
     this.prepareNodes();
     this.isEnable = true;
+    this.isCreatedGraph.emit(this.isEnable);
   }
 
   private sleep(ms) {

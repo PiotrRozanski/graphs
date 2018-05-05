@@ -1,7 +1,7 @@
 import {Component, EventEmitter, OnChanges, OnInit, Output} from '@angular/core';
 import {GraphModel} from '../../graph_model/GraphModel';
 import {Link} from '../../graph_model/Link';
-import {Node} from '../../graph_model/Node';
+import {Vertex} from '../../graph_model/Vertex';
 
 
 @Component({
@@ -16,7 +16,7 @@ export class InputFormCreatorComponent implements OnInit, OnChanges {
 
   graph: GraphModel = new GraphModel();
 
-  nodes: Node[] = [];
+  nodes: Vertex[] = [];
   links: Link[] = [];
 
   nodeAmount = 2;
@@ -52,7 +52,7 @@ export class InputFormCreatorComponent implements OnInit, OnChanges {
   private prepareGraph() {
     this.clearGraph();
     for (let i = 0; i < this.nodeAmount; i++) {
-      this.nodes.push(new Node(i + 1, 'test'));
+      this.nodes.push(new Vertex(i + 1, 'test'));
     }
     for (let j = 0; j < this.linkAmount; j++) {
       this.links.push(new Link(1, 0, 0));

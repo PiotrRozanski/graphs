@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Link, Node} from '../../components/graph-visualization/d3/models';
 import {MatSnackBar} from '@angular/material';
 import {GraphModel} from '../../components/graph_model/GraphModel';
@@ -10,6 +10,7 @@ import {GraphModel} from '../../components/graph_model/GraphModel';
 })
 export class AdjacencyMatrixComponent implements OnInit {
   @Input() graph: GraphModel;
+  @Output() isCreatedGraph = new EventEmitter<Boolean>();
   isEnable = false;
   nodes: Node[] = [];
   links: Link[] = [];
@@ -21,7 +22,6 @@ export class AdjacencyMatrixComponent implements OnInit {
   }
 
   async generateGraph() {
-    this.isEnable = false;
     this.clearGraphElements();
     await this.sleep(1);
     for (let i = 0; i < this.graph.links.length; i++) {
@@ -31,6 +31,7 @@ export class AdjacencyMatrixComponent implements OnInit {
     }
     this.prepareNodes();
     this.isEnable = true;
+    this.isCreatedGraph.emit(this.isEnable);
   }
 
   // The program needs time to remove previously graph
@@ -54,6 +55,7 @@ export class AdjacencyMatrixComponent implements OnInit {
     });
   }
 
+  // ToDo add validation for adjacency matrix
   // private validateAdjacencyMatrix(): boolean {
   //   if (this.graph.links.length < this.graph.nodes.length - 1) {
   //     this.openSnackBar('ERROR: Incorrect values in the adjacency matrix');

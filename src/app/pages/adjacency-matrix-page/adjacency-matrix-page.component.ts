@@ -8,6 +8,7 @@ import {GraphModel} from '../../components/graph_model/GraphModel';
 })
 export class AdjacencyMatrixPageComponent implements OnInit {
   public graph: GraphModel = new GraphModel();
+  public isCreatedGraph: Boolean = false;
 
   constructor() {
   }
@@ -19,4 +20,7 @@ export class AdjacencyMatrixPageComponent implements OnInit {
     this.graph = graph;
   }
 
+  public checkGraph(isGraph: Boolean) {
+    this.isCreatedGraph = isGraph;
+  }
 }

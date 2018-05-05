@@ -8,7 +8,7 @@ import {GraphModel} from '../../components/graph_model/GraphModel';
 })
 export class InputFormPageComponent implements OnInit {
   graph: GraphModel;
-
+  public isCreatedGraph: Boolean = false;
 
   constructor() {
   }
@@ -18,7 +18,9 @@ export class InputFormPageComponent implements OnInit {
 
   onCreatedForm(graph: GraphModel) {
     this.graph = graph;
-    console.log(this.graph.nodes.length);
-    console.log(this.graph.links.length);
+  }
+
+  public checkGraph(isGraph: Boolean) {
+    this.isCreatedGraph = isGraph;
   }
 }

@@ -9,6 +9,7 @@ import {GraphModel} from '../../components/graph_model/GraphModel';
 })
 export class IncidenceMatrixPageComponent implements OnInit {
   public graph: GraphModel = new GraphModel();
+  public isCreatedGraph: Boolean = false;
 
   constructor() {
   }
@@ -20,4 +21,7 @@ export class IncidenceMatrixPageComponent implements OnInit {
     this.graph = graph;
   }
 
+  public checkGraph(isGraph: Boolean) {
+    this.isCreatedGraph = isGraph;
+  }
 }

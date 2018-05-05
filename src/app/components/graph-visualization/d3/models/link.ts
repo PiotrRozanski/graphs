@@ -12,5 +12,4 @@ export class Link implements d3.SimulationLinkDatum<Node> {
     this.source = source;
     this.target = target;
   }
-
 }
