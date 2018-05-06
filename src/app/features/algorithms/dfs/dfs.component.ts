@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {GraphSingleton} from '../../../components/graph-visualization/singletons/GraphSingleton';
-import Stack from 'ts-data.stack';
-import {Link} from '../../../components/graph-visualization/d3/models';
+import {Link, Node} from '../../../components/graph-visualization/d3/models';
+import {id} from '@swimlane/ngx-graph/release/utils';
 
 @Component({
   selector: 'app-dfs',
@@ -17,54 +17,62 @@ export class DfsComponent implements OnInit {
   }
 
   public run(): number[] {
-    const convertedGraph = GraphSingleton.Instance;
+    const convertedGraph = GraphSingleton.Instance.toAdjacencyMatrix();
 
     const startNode = 0;
-    const stack = new Stack<number>();
+    const stack: number[] = [];
     const result: number[] = [];
 
     stack.push(startNode);
 
-    const visitedNode: boolean[] = [];
-    // const visitedNode = Boolean(convertedGraph.links[0]);
+    const visitedNode: Boolean[] = [];
 
-    while (stack.count() !== 0) {
+    while (stack.length !== 0) {
+      console.log('repeat');
       const actualTakenNode = stack.pop();
 
-      if (visitedNode[actualTakenNode]) {
+      if (visitedNode[actualTakenNode - 1]) {
         continue;
       }
 
-      visitedNode[actualTakenNode] = true;
+      visitedNode[actualTakenNode - 1] = true;
 
-      // for (let i = convertedGraph.links.length - 1; i >= 0; i--) {
-      //   if (convertedGraph[actualTakenNode, i] !== 0) {
-      //     stack.push(i);
-      //   }
-      // }
-
-      convertedGraph.links.forEach((item, index) => {
-        console.log(index);
-        if (item.source === actualTakenNode && item.target === (index + 1)) {
-          stack.push(index + 1);
+      const tmp = convertedGraph.length * convertedGraph[0].length;
+      for (let i = 0; i < convertedGraph.length; i++) {
+        for (let j = 0; j < convertedGraph[0].length; j++) {
+          if (convertedGraph[actualTakenNode][j] !== 0) {
+            stack.push(j);
+          }
         }
-      });
-
-      result.push(actualTakenNode);
+      }
+      result.push(actualTakenNode + 1);
     }
     console.log(result);
     return result;
   }
 
-  // public getCriticalLinks(): Link[] {
-  //   let criticalLink: Link[];
-  //   let graph = GraphSingleton.Instance;
-  //
-  //   graph.links.forEach((item) => {
-  //     // let clone = GraphSingleton.Instance;
-  //     // let cloneLink =
-  //
-  //   });
-  // }
+  public getCriticalLinks(): void {
+    const criticalLink: Link[] = [];
+    const graph = GraphSingleton.Instance;
+
+    graph.links.forEach((item) => {
+
+        const clone = graph;
+        let cloneLink: Link;
+        clone.links.forEach((element, index) => {
+          if ((<Node>element.source).id === (<Node>item.source).id && (<Node>element.target).id === (<Node>item.target).id) {
+            cloneLink = element;
+            clone.links.splice(index);
+          }
+        });
+
+        if (!clone.isConsistentGraph()) {
+          criticalLink.push(item);
+        }
+
+      }
+    );
+    console.log(criticalLink);
+  }
 
 }
