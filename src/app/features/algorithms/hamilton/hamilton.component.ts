@@ -60,11 +60,8 @@ export class HamiltonComponent implements OnInit {
     } else {
       test = false;
 
-      // dobrze działa
-
       for (const element of adjacencyNodes) {
         if (element.id === this.rootNode.id) {
-          // raczej dobrze ale upewnic się
           test = true;
           break;
         }
