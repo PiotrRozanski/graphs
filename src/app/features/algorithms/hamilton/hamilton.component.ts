@@ -74,10 +74,8 @@ export class HamiltonComponent implements OnInit {
       this.stackOfNodes.forEach((item) => {
         this.result += '->' + item.id;
       });
-      console.log('end');
       console.log(test ? 'Cykl Hamiltona:' : 'Sciezka Hamiltona:');
       console.log(test ? this.result += '->' + Number(this.rootNode.id) + '\r\n' : this.result + '\r\n');
-      console.log('repeat');
       this.result = '';
     }
      this.stackOfNodes.pop();

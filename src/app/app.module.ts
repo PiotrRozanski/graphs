@@ -32,6 +32,7 @@ import { InputFormComponent } from './features/input-form/input-form.component';
 import { InputFormCreatorComponent } from './components/generators/input-form-creator/input-form-creator.component';
 import {HamiltonComponent} from './features/algorithms/hamilton/hamilton.component';
 import { DfsComponent } from './features/algorithms/dfs/dfs.component';
+import { EulerianComponent } from './features/algorithms/eulerian/eulerian.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { DfsComponent } from './features/algorithms/dfs/dfs.component';
     InputFormComponent,
     InputFormCreatorComponent,
     HamiltonComponent,
-    DfsComponent
+    DfsComponent,
+    EulerianComponent
   ],
   imports: [
     BrowserModule,
