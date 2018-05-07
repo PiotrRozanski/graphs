@@ -11,13 +11,10 @@ import {GraphModel} from '../../components/graph_model/GraphModel';
 export class AdjacencyMatrixComponent implements OnInit {
   @Input() graph: GraphModel;
   @Output() isCreatedGraph = new EventEmitter<Boolean>();
-  isEnable = false;
-  nodes: Node[] = [new Node(1), new Node(2), new Node(3), new Node(4), new Node(5), new Node(6), new Node(7)];
-  links: Link[] = [new Link(1, 6), new Link(1, 2), new Link(1, 5), new Link(1, 7),
-                   new Link(2, 7), new Link(2, 3), new Link(2, 4),
-                   new Link(3, 4),
-                   new Link(4, 5), new Link(4, 7),
-                   new Link(5, 6), new Link(5, 7)];
+  isEnable = false
+  // ToDo zostawić puste przed mergem
+  nodes: Node[] = [];
+  links: Link[] = [];
 
   constructor(public snackBar: MatSnackBar) {
   }
@@ -25,15 +22,16 @@ export class AdjacencyMatrixComponent implements OnInit {
   ngOnInit() {
   }
 
+  // ToDo odkomentowac przed mergem
   async generateGraph() {
-    // this.clearGraphElements();
+    this.clearGraphElements();
     await this.sleep(1);
-    // for (let i = 0; i < this.graph.links.length; i++) {
-    //   const source = this.graph.links[i].source;
-    //   const target = this.graph.links[i].target;
-    //   this.prepareLinks(source, target);
-    // }
-    // this.prepareNodes();
+    for (let i = 0; i < this.graph.links.length; i++) {
+      const source = this.graph.links[i].source;
+      const target = this.graph.links[i].target;
+      this.prepareLinks(source, target);
+    }
+    this.prepareNodes();
     this.isEnable = true;
     this.isCreatedGraph.emit(this.isEnable);
   }
