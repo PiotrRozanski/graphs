@@ -13,16 +13,10 @@
   </mat-form-field>
 
   <div class="result">
-    <br>
-
-    <p>{{algorithmResult}}</p>
-
-    <br>
-
-    <H2>Result:</H2>
-
-    <br>
-
-    <p>{{algorytmPath}}</p>
+    <ul class="demo-list-item mdl-list">
+      <li class="mdl-list__item" *ngFor="let element of algorithmResult">
+        {{element}}
+      </li>
+    </ul>
   </div>
 </div>

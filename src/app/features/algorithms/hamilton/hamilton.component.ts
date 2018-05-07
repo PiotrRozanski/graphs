@@ -1,9 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
-import Stack from 'ts-data.stack';
 import {GraphSingleton} from '../../../components/graph-visualization/singletons/GraphSingleton';
 import {Node} from '../../../components/graph-visualization/d3/models';
 import {GraphModel} from '../../../components/graph_model/GraphModel';
-import {isLineBreak} from 'codelyzer/angular/sourceMappingVisitor';
 
 @Component({
   selector: 'app-hamilton',
@@ -19,7 +17,7 @@ export class HamiltonComponent implements OnInit {
   private rootNode: Node;
   private result: string;
   private selectedNode = 1;
-  private algorithmResult = 'none';
+  private algorithmResult: string[] = [];
   private algorytmPath: string;
 
   constructor() {
@@ -30,7 +28,7 @@ export class HamiltonComponent implements OnInit {
   }
 
   public run(num: string) {
-    this.algorithmResult = '';
+    this.algorithmResult = [];
     this.result = '';
     this.algorytmPath = '';
     this.isRoot = true;
@@ -69,13 +67,19 @@ export class HamiltonComponent implements OnInit {
 
       this.result = '';
       this.stackOfNodes.forEach((item) => {
-        this.result += '->' + item.id;
+        if (this.result === '') {
+          this.result += item.id;
+        } else {
+          this.result += '->' + item.id;
+        }
       });
-      console.log(test ? 'Cykl Hamiltona:' : 'Sciezka Hamiltona:');
+      let type = '';
+      console.log(test ? type += 'Cykl Hamiltona:' : type += 'Sciezka Hamiltona:');
       console.log(test ? this.result += '->' + Number(this.rootNode.id) + '\r\n' : this.result + '\r\n');
+      this.algorithmResult.push(type + ' ' + this.result);
       this.result = '';
     }
-     this.stackOfNodes.pop();
+    this.stackOfNodes.pop();
 
   }
 

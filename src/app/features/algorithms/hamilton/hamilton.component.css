@@ -16,3 +16,15 @@ p, h2 {
   justify-content: center;
   align-items: center;
 }
+
+.demo-list-item {
+  width: 300px;
+  text-align: center;
+}
+
+.result {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

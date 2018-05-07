@@ -7,7 +7,13 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import {MdlModule} from '@angular-mdl/core';
 import {NgxGraphModule} from '@swimlane/ngx-graph';
 import { AdjacencyMatrixCreatorComponent } from './components/generators/adjacency-matrix-creator/adjacency-matrix-creator.component';
-import {MatButtonModule, MatMenuModule, MatSelectModule, MatSnackBarModule, MatTabChangeEvent, MatTabsModule} from '@angular/material';
+import {
+  MatButtonModule, MatDividerModule,
+  MatMenuModule,
+  MatSelectModule,
+  MatSnackBarModule,
+  MatTabsModule
+} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { GraphVisualizationComponent } from './components/graph-visualization/graph-visualization.component';
 import { LinkVisualComponent } from './components/graph-visualization';
@@ -72,7 +78,8 @@ import { EulerianComponent } from './features/algorithms/eulerian/eulerian.compo
     Routing,
     FormsModule,
     MatTabsModule,
-    MatSelectModule
+    MatSelectModule,
+    MatDividerModule
   ],
   providers: [D3Service],
   bootstrap: [AppComponent]
