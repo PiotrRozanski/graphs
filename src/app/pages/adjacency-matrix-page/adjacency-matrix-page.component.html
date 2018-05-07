@@ -12,5 +12,9 @@
     <app-hamilton [currentGraph]="graph"></app-hamilton>
   </mat-tab>
 
+  <mat-tab *ngIf="isCreatedGraph" label="DFS">
+    <app-dfs></app-dfs>
+  </mat-tab>
+
 </mat-tab-group>
 

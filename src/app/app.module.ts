@@ -31,6 +31,7 @@ import { InputFormPageComponent } from './pages/input-form-page/input-form-page.
 import { InputFormComponent } from './features/input-form/input-form.component';
 import { InputFormCreatorComponent } from './components/generators/input-form-creator/input-form-creator.component';
 import {HamiltonComponent} from './features/algorithms/hamilton/hamilton.component';
+import { DfsComponent } from './features/algorithms/dfs/dfs.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import {HamiltonComponent} from './features/algorithms/hamilton/hamilton.compone
     InputFormPageComponent,
     InputFormComponent,
     InputFormCreatorComponent,
-    HamiltonComponent
+    HamiltonComponent,
+    DfsComponent
   ],
   imports: [
     BrowserModule,

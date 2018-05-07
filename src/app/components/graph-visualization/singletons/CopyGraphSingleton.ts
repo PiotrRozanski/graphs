@@ -1,10 +1,11 @@
 import {Link, Node} from '../d3/models';
+import {GraphSingleton} from './GraphSingleton';
 
-export class GraphSingleton {
-
+export class CopyGraphSingleton {
   private static _instance: GraphSingleton = new GraphSingleton();
   public nodes: Node[] = [];
   public links: Link[] = [];
+  public copyGraph: GraphSingleton = new GraphSingleton();
 
 
   public AddData(nodes: Node[], links: Link[]) {
@@ -100,3 +101,4 @@ export class GraphSingleton {
     return true;
   }
 }
+
