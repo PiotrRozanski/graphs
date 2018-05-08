@@ -11,8 +11,7 @@ import {GraphModel} from '../../components/graph_model/GraphModel';
 export class AdjacencyMatrixComponent implements OnInit {
   @Input() graph: GraphModel;
   @Output() isCreatedGraph = new EventEmitter<Boolean>();
-  isEnable = false
-  // ToDo zostawić puste przed mergem
+  isEnable = false;
   nodes: Node[] = [];
   links: Link[] = [];
 
@@ -22,8 +21,8 @@ export class AdjacencyMatrixComponent implements OnInit {
   ngOnInit() {
   }
 
-  // ToDo odkomentowac przed mergem
   async generateGraph() {
+    this.isEnable = false;
     this.clearGraphElements();
     await this.sleep(1);
     for (let i = 0; i < this.graph.links.length; i++) {

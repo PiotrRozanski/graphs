@@ -1,14 +1,9 @@
 import {TreeNode} from './TreeNode';
 
 export class Tree {
-  // The root of a the tree
   root: TreeNode;
-  // We use adjacency list to for BFS/DFS, we keep only the labels here
-  // not the actual nodes
   adjacencies: Array<Array<number>>;
-  // Array of the nodes
   nodes: Array<TreeNode>;
-  // Allow a node to be connected with itself, cyclic graph
   allowCyclic: boolean;
 
   constructor(rootValue: number, allowCyclic: boolean = false) {
@@ -19,22 +14,11 @@ export class Tree {
     this.allowCyclic = allowCyclic;
   }
 
-  /**
-   * Add a node to the tree
-   *
-   * @param {TreeNode} node
-   */
   addNode(node: TreeNode) {
     this.adjacencies[node.label] = [];
     this.nodes.push(node);
   }
 
-  /**
-   * Set a connection between two nodes
-   *
-   * @param {number} node1
-   * @param {number} node2
-   */
   setConnection(node1Label: number, node2Label: number) {
     if (!this.allowCyclic && node1Label === node2Label) {
       throw Error('Graph cannot be cyclic');
@@ -42,12 +26,6 @@ export class Tree {
     this.adjacencies[node1Label].push(node2Label);
   }
 
-  /**
-   * Breath first search
-   *
-   * @param {Function} [cb]
-   * @returns {array}
-   */
   breadthFirstSearch(cb?: Function) {
     const visitedNodes: Array<number> = [];
     let nodesToProcess: Array<number> = [0];
@@ -55,7 +33,6 @@ export class Tree {
     while (nodesToProcess.length) {
       const node = nodesToProcess.shift();
 
-      // process the node if there is a callback
       if (cb) {
         const result = cb(node, visitedNodes, nodesToProcess);
         if (result === true) {
@@ -72,12 +49,6 @@ export class Tree {
     return visitedNodes;
   }
 
-  /**
-   * Depth first search
-   *
-   * @param {Function} [cb]
-   * @returns {array}
-   */
   depthFirstSearch(cb?: Function) {
     const visitedNodes: Array<number> = [];
     let nodesToProcess: Array<number> = [0];
@@ -85,7 +56,6 @@ export class Tree {
     while (nodesToProcess.length) {
       const node = nodesToProcess.shift();
 
-      // process the node if there is a callback
       if (cb) {
         const result = cb(node, visitedNodes, nodesToProcess);
         if (result === true) {
