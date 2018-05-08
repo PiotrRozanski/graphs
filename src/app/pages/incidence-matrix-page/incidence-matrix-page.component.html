@@ -8,8 +8,15 @@
     <app-incidence-matrix (isCreatedGraph)="checkGraph($event)" [graph]="graph"></app-incidence-matrix>
   </mat-tab>
 
-  <mat-tab *ngIf="isCreatedGraph" label="Hamilton cycle">
+  <mat-tab *ngIf="isCreatedGraph" label="Hamilton algorithm">
     <app-hamilton [currentGraph]="graph"></app-hamilton>
   </mat-tab>
 
+  <mat-tab *ngIf="isCreatedGraph" label="Eulerian algorithm">
+    <app-eulerian></app-eulerian>
+  </mat-tab>
+
+  <mat-tab *ngIf="isCreatedGraph" label="DFS">
+    <app-dfs></app-dfs>
+  </mat-tab>
 </mat-tab-group>

@@ -4,6 +4,12 @@
 
   <br>
 
-  <button mat-button color="primary" (click)="getCriticalLinks()"><h5>critical</h5></button>
+  <div *ngIf="isReady">
+
+    <h2>{{result}}</h2>
+
+  </div>
+
+  <!--<button mat-button color="primary" (click)="getCriticalLinks()"><h5>critical</h5></button>-->
 
 </div>
