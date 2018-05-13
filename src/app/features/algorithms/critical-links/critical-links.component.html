@@ -1,0 +1,15 @@
+<div>
+
+  <button mat-button color="primary" (click)="run()"><h5>Run algorithm</h5></button>
+
+  <br>
+
+  <div *ngIf="isReady" class="result">
+    <H2>Result:</H2>
+
+    <br>
+
+    <p>{{finalResult}}</p>
+  </div>
+
+</div>
