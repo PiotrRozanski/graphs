@@ -54,6 +54,7 @@ export class DfsComponent implements OnInit {
       }
       result.push(actualTakenNode + 1);
     }
+    console.log(result);
     return result;
   }
 

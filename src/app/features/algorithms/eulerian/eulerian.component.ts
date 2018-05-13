@@ -12,7 +12,10 @@ export class EulerianComponent implements OnInit {
   private graph: GraphSingleton;
   private adj: Array<number>[] = [[]];
   private result: string;
+  private nodesResult;
   private isReady = false;
+  private isR = true;
+  private indexTwo = 0;
 
   constructor() {
     this.graph = GraphSingleton.Instance;
@@ -22,20 +25,42 @@ export class EulerianComponent implements OnInit {
   }
 
   public run() {
+    this.indexTwo = 0;
     this.result = '';
     this.isReady = false;
-    this.nodesCount = 20;
+    this.nodesCount = 7;
 
     for (let i = 0; i < this.nodesCount; i++) {
       this.adj[i] = [];
     }
 
-    this.graph.links.forEach((item) => {
-      this.addEdge((Number((<Node>item.source).id) - 1), (Number((<Node>item.target).id) - 1));
-    });
+    // this.graph.links.forEach((item) => {
+    //   this.addEdge((Number((<Node>item.source).id) - 1), (Number((<Node>item.target).id) - 1));
+    // });
+
+    this.addEdge(0, 1);
+    this.addEdge(0, 2);
+    this.addEdge(0, 5);
+    this.addEdge(0, 6);
+    this.addEdge(1, 2);
+    this.addEdge(2, 6);
+    this.addEdge(2, 3);
+    this.addEdge(3, 6);
+    this.addEdge(3, 4);
+    this.addEdge(3, 5);
+    this.addEdge(4, 5);
+    this.addEdge(5, 6);
+
+    // this.addEdge(0, 2);
+    // this.addEdge(0, 3);
+    // this.addEdge(2, 4);
+    // this.addEdge(2, 3);
+    // this.addEdge(4, 1);
+    // this.addEdge(1, 3);
 
     this.result = this.printResult(this.isEulerian());
     this.isReady = true;
+    console.log(this.nodesResult);
   }
 
   public printResult(resultNumber: number): string {
@@ -61,12 +86,41 @@ export class EulerianComponent implements OnInit {
     let index = 0;
     visited[count] = true;
 
-    while (index !== this.adj[count].length + 1) {
-      if (!visited[index + 1]) {
-        this.DFSUtil(index + 1, visited);
-      }
+    // console.log(this.adj[count]);
+    while (index < this.adj[count].length && this.isR) {
       index++;
+      console.log('9');
+      if (typeof visited[count + 1] !== 'undefined') {
+        this.nodesResult += count + '----';
+        this.nodesResult += this.adj[count][index] + '\n';
+        this.DFSUtil(count + 1, visited);
+      }
+      if (typeof visited[count + 1] === 'undefined') {
+        this.isR = false;
+        break;
+      }
     }
+
+    // for (const element of this.adj[count]) {
+    //   if (this.adj[count].length - 1 >= index) {
+    //     console.log('9');
+    //     if (!visited[index + 1]) {
+    //       this.DFSUtil(index + 1, visited);
+    //     }
+    //     index++;
+    //   }
+    // }
+
+    // console.log('begin');
+    // console.log(this.adj[count]);
+    // if (this.adj[count].length !== 0) {
+    //   for (let i = 0; i < this.adj[count].length - 1; i++) {
+    //     if (!visited[i]) {
+    //       this.DFSUtil(i, visited);
+    //     }
+    //   }
+    // }
+    // console.log('end');
   }
 
 
@@ -92,6 +146,7 @@ export class EulerianComponent implements OnInit {
 
     for (i = 0; i < this.nodesCount; i++) {
       if (visited[i] === false && this.adj[i].length > 0) {
+        console.log(visited);
         return false;
       }
     }
