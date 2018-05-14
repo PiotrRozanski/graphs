@@ -1,8 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {GraphSingleton} from '../../../components/graph-visualization/singletons/GraphSingleton';
-import {Tree} from '../dfs/Tree';
 import {Node} from '../../../components/graph-visualization/d3/models';
-import {TreeNode} from '../dfs/TreeNode';
 
 @Component({
   selector: 'app-critical-links',
@@ -14,6 +12,7 @@ export class CriticalLinksComponent implements OnInit {
   private result: number[] = [];
   private isReady = false;
   private finalResult: string[] = [];
+  private algorithmResult: string;
 
   constructor() {
     this.graph = GraphSingleton.Instance;
@@ -25,6 +24,7 @@ export class CriticalLinksComponent implements OnInit {
   public run() {
     this.isReady = false;
     this.finalResult = [];
+    this.algorithmResult = '';
     for (let index = 0; index < this.graph.links.length; index++) {
 
       const convertedGraph = GraphSingleton.Instance.toAdjacencyMatrix();
@@ -65,6 +65,8 @@ export class CriticalLinksComponent implements OnInit {
       this.checkResult();
     }
     this.isReady = true;
+    this.algorithmResult = this.finalResult.valueOf().toString();
+    this.algorithmResult = this.algorithmResult.split(',').join('');
   }
 
   private checkResult(): void {
@@ -77,9 +79,9 @@ export class CriticalLinksComponent implements OnInit {
       }
     }
     if (!(index === this.graph.nodes.length)) {
-      this.finalResult.push(' === critical)');
+      this.finalResult.push(' === critical) ');
     } else {
-      this.finalResult.push(' === not)');
+      this.finalResult.push(' === not) ');
     }
     }
 }
