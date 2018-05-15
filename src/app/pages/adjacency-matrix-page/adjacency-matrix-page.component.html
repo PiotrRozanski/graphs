@@ -24,4 +24,8 @@
     <app-critical-links></app-critical-links>
   </mat-tab>
 
+  <mat-tab *ngIf="isCreatedGraph" label="Coloring">
+    <app-coloring-algorithm></app-coloring-algorithm>
+  </mat-tab>
+
 </mat-tab-group>
