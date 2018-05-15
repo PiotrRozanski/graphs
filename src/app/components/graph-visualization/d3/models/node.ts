@@ -1,4 +1,5 @@
 import APP_CONFIG from '../../../../app.config';
+import {Color} from '../../../../features/algorithms/coloring-algorithm/Color';
 
 export class Node implements d3.SimulationNodeDatum {
   // optional - defining optional implementation properties - required for relevant typing assistance
@@ -12,6 +13,7 @@ export class Node implements d3.SimulationNodeDatum {
 
   id: string;
   linkCount: number = 0;
+  color = new Color(0, 94, 176);
 
   constructor(id) {
     this.id = id;
@@ -29,8 +31,4 @@ export class Node implements d3.SimulationNodeDatum {
     return 40;
   }
 
-  get color() {
-    const index = Math.floor(APP_CONFIG.SPECTRUM.length * this.normal());
-    return APP_CONFIG.SPECTRUM[index];
-  }
 }

@@ -8,11 +8,12 @@ import {MdlModule} from '@angular-mdl/core';
 import {NgxGraphModule} from '@swimlane/ngx-graph';
 import { AdjacencyMatrixCreatorComponent } from './components/generators/adjacency-matrix-creator/adjacency-matrix-creator.component';
 import {
+  ErrorStateMatcher,
   MatButtonModule, MatDividerModule,
   MatMenuModule,
   MatSelectModule,
   MatSnackBarModule,
-  MatTabsModule
+  MatTabsModule, ShowOnDirtyErrorStateMatcher
 } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { GraphVisualizationComponent } from './components/graph-visualization/graph-visualization.component';
@@ -40,6 +41,7 @@ import {HamiltonComponent} from './features/algorithms/hamilton/hamilton.compone
 import { DfsComponent } from './features/algorithms/dfs/dfs.component';
 import { EulerianComponent } from './features/algorithms/eulerian/eulerian.component';
 import { CriticalLinksComponent } from './features/algorithms/critical-links/critical-links.component';
+import { ColoringAlgorithmComponent } from './features/algorithms/coloring-algorithm/coloring-algorithm.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +69,8 @@ import { CriticalLinksComponent } from './features/algorithms/critical-links/cri
     HamiltonComponent,
     DfsComponent,
     EulerianComponent,
-    CriticalLinksComponent
+    CriticalLinksComponent,
+    ColoringAlgorithmComponent
   ],
   imports: [
     BrowserModule,
@@ -83,7 +86,7 @@ import { CriticalLinksComponent } from './features/algorithms/critical-links/cri
     MatSelectModule,
     MatDividerModule
   ],
-  providers: [D3Service],
+  providers: [D3Service, {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

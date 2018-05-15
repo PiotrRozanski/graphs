@@ -1,7 +1,7 @@
 <svg:g [attr.transform]="'translate(' + node.x + ',' + node.y + ')'" xmlns:svg="http://www.w3.org/1999/XSL/Transform">
   <svg:circle
     class="node"
-    [attr.fill]="node.color"
+    [attr.fill]="node.color.toRgb()"
     cx="0"
     cy="-12"
     [attr.r]="node.r">

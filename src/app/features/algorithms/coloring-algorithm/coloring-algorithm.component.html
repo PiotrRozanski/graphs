@@ -1,0 +1,23 @@
+<div>
+
+  <button mat-button color="primary" (click)="run()"><h5>Run algorithm</h5></button>
+
+  <br>
+
+  <mat-form-field>
+    <mat-select placeholder="select coloring type" [(value)]=selectedColoringType>
+      <mat-option [value]="1">{{'Nodes not sorted'}}</mat-option>
+      <mat-option [value]="2">{{'Nodes sorted in descending order'}}</mat-option>
+      <mat-option [value]="3">{{'Nodes sorted in random order'}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div *ngIf="isReady" class="result">
+    <H2>Result:</H2>
+
+    <br>
+
+    <p>{{ message }}</p>
+  </div>
+
+</div>
