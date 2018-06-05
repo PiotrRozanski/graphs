@@ -1,2 +1,20 @@
 <button mat-button color="primary" (click)="generateGraph()"><h5>Generate</h5></button>
 <app-graph-visualization class="graph" *ngIf="isEnable" [nodes]="nodes" [links]="links"></app-graph-visualization>
+
+<button mat-button color="primary" (click)="addWeightForLinks()">Add weight</button>
+
+<div id="weights" *ngIf="isReadyAddWeight">
+  <div *ngFor="let link of graphInMemory.links">
+    <form action="#">
+      {{getLinkID(link)}}
+      <div class="mdl-textfield mdl-js-textfield">
+        <input class="mdl-textfield__input" type="text" [(ngModel)]="link.weight"
+               [ngModelOptions]="{standalone: true}" id="sample">
+        <label class="mdl-textfield__label" for="sample">Waga</label>
+        <span class="mdl-textfield__error">Input is not a weight</span>
+      </div>
+    </form>
+  </div>
+</div>
+
+<app-correct-shortest-path></app-correct-shortest-path>

@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Link, Node} from '../../components/graph-visualization/d3/models';
 import {MatSnackBar} from '@angular/material';
 import {GraphModel} from '../../components/graph_model/GraphModel';
+import {GraphSingleton} from '../../components/graph-visualization/singletons/GraphSingleton';
 
 @Component({
   selector: 'app-adjacency-matrix',
@@ -11,6 +12,8 @@ import {GraphModel} from '../../components/graph_model/GraphModel';
 export class AdjacencyMatrixComponent implements OnInit {
   @Input() graph: GraphModel;
   @Output() isCreatedGraph = new EventEmitter<Boolean>();
+  graphInMemory: GraphSingleton;
+  isReadyAddWeight: Boolean = false;
   isEnable = false;
   nodes: Node[] = [];
   links: Link[] = [];
@@ -56,6 +59,11 @@ export class AdjacencyMatrixComponent implements OnInit {
     });
   }
 
+  private addWeightForLinks() {
+    this.graphInMemory = GraphSingleton.Instance;
+    this.isReadyAddWeight = true;
+  }
+
   // ToDo add validation for adjacency matrix
   // private validateAdjacencyMatrix(): boolean {
   //   if (this.graph.links.length < this.graph.nodes.length - 1) {
@@ -71,5 +79,9 @@ export class AdjacencyMatrixComponent implements OnInit {
   private clearGraphElements() {
     this.links = [];
     this.nodes = [];
+  }
+
+  private getLinkID(link: Link): string {
+    return (<Node>link.source).id + '------>' + (<Node>link.target).id;
   }
 }

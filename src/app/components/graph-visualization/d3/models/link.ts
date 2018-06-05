@@ -7,6 +7,7 @@ export class Link implements d3.SimulationLinkDatum<Node> {
   // must - defining enforced implementation properties
   source: Node | string | number;
   target: Node | string | number;
+  weight = 1;
 
   constructor(source, target) {
     this.source = source;

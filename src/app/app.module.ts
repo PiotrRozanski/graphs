@@ -42,6 +42,8 @@ import { DfsComponent } from './features/algorithms/dfs/dfs.component';
 import { EulerianComponent } from './features/algorithms/eulerian/eulerian.component';
 import { CriticalLinksComponent } from './features/algorithms/critical-links/critical-links.component';
 import { ColoringAlgorithmComponent } from './features/algorithms/coloring-algorithm/coloring-algorithm.component';
+import { ShortestPathComponent } from './features/algorithms/shortest-path/shortest-path.component';
+import { CorrectShortestPathComponent } from './features/algorithms/correct-shortest-path/correct-shortest-path.component';
 
 @NgModule({
   declarations: [
@@ -70,7 +72,9 @@ import { ColoringAlgorithmComponent } from './features/algorithms/coloring-algor
     DfsComponent,
     EulerianComponent,
     CriticalLinksComponent,
-    ColoringAlgorithmComponent
+    ColoringAlgorithmComponent,
+    ShortestPathComponent,
+    CorrectShortestPathComponent
   ],
   imports: [
     BrowserModule,
